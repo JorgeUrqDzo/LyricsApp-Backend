@@ -5,6 +5,8 @@ namespace LyricsApp.Infrastructure.EFCore.DataContext.Context
 {
     public class LyricsAppDbContext : DbContext
     {
+        public readonly int PAGE_SIZE = 100;
+
         public LyricsAppDbContext(DbContextOptions options) : base(options)
         {
         }

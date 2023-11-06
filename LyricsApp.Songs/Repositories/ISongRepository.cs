@@ -1,4 +1,5 @@
-﻿using LyricsApp.Core.Entities.Entities;
+﻿using LyricsApp.Core.Entities;
+using LyricsApp.Core.Entities.Entities;
 
 namespace LyricsApp.Songs.Repositories
 {
@@ -6,10 +7,11 @@ namespace LyricsApp.Songs.Repositories
     {
         Task CreateSongAsync(Song song);
         Task<Song?> GetSongByIdAsync(Guid id);
-        Task<IEnumerable<Song>> GetSongsByUserAsync(Guid userId);
+        PagedResult<Song> GetSongsByUserAsync(Guid userId, string query, int page = 1, OrderDirectionEnum order = OrderDirectionEnum.ASC);
         void Update(Song currentSong);
         void Delete(Song song);
         Task<Song?> FindSongById(Guid id);
+        Task<ICollection<Song>> SearchSongsByTitle(string query);
     }
 }
 

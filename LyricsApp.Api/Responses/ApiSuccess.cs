@@ -17,5 +17,28 @@
         public string Message { get; set; }
         public T Model { get; set; }
     }
+
+
+    public class ApiSuccessPaged<T> : ApiSuccess<T>
+    {
+        public ApiSuccessPaged(T model) : base(model)
+        {
+        }
+
+        public ApiSuccessPaged(T model, int page, bool next, bool prev, int totalItems, int pageItems) : base(model)
+        {
+            Page = page;
+            Next = next;
+            Prev = prev;
+            TotalItems = totalItems;
+            PageItems = pageItems;
+        }
+
+        public int Page { get; init; }
+        public bool Next { get; init; }
+        public bool Prev { get; init; }
+        public int TotalItems { get; init; }
+        public int PageItems { get; init; }
+    }
 }
 

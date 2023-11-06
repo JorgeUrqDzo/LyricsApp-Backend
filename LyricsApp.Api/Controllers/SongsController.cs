@@ -1,5 +1,7 @@
 using LyricsApp.Api.Base;
 using LyricsApp.Api.Responses;
+using LyricsApp.Core.Entities;
+using LyricsApp.Songs;
 using LyricsApp.Songs.DTOs;
 using LyricsApp.Songs.UseCases.Commands;
 using LyricsApp.Songs.UseCases.Queries;
@@ -16,11 +18,19 @@ namespace LyricsApp.Api.Controllers
 
         // GET: api/Songs
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ApiSuccess<IEnumerable<SongDto>>))]
-        public async Task<IActionResult> Get()
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ApiSuccess<PagedResult<SongDto>>))]
+        public async Task<IActionResult> Get([FromQuery] PaginationRequest request)
         {
-            var songs = await mediator.Send(new GetSongsByUserQuery());
-            return Ok(new ApiSuccess<IEnumerable<SongDto>>(songs));
+            var songs = await mediator.Send(new GetSongsByUserQuery(request.Page, request.Query, request.Order));
+            return Ok(new ApiSuccess<PagedResult<SongDto>>(songs));
+        }
+
+        [HttpGet("search")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ApiSuccess<IEnumerable<SearchSongsDto>>))]
+        public async Task<IActionResult> Search([FromQuery] SearchSongByTitleQuery request)
+        {
+            var songs = await mediator.Send(request);
+            return Ok(new ApiSuccess<IEnumerable<SearchSongsDto>>(songs));
         }
 
         // GET: api/Songs/5
