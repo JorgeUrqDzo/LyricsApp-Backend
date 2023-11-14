@@ -25,7 +25,7 @@ namespace LyricsApp.Songs.UseCases.Commands
 
         public async Task<SongDto> Handle(CreateSongCommand request, CancellationToken cancellationToken)
         {
-            var newSong = new Song(Guid.NewGuid(), request.Title, request.Lyric);
+            var newSong = new Song(Guid.NewGuid(), request.Title, request.Lyric, Guid.Empty);
 
             await songRepository.CreateSongAsync(newSong);
 
