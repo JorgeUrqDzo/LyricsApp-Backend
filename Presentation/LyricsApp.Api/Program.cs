@@ -1,7 +1,6 @@
 using LyricsApp.Infrastructure.IoC;
-using LyricsApp.Songs;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
+using LyricsApp.Application.IoC;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +30,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

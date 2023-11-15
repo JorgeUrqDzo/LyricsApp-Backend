@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 25.0.1706.6
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyricsApp.Core.Entities", "LyricsApp.Core\LyricsApp.Core.Entities.csproj", "{DD904525-C145-46C5-B4A3-3EC1A8EBC0E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyricsApp.Core.Entities", "Core\LyricsApp.Core\LyricsApp.Core.Entities.csproj", "{DD904525-C145-46C5-B4A3-3EC1A8EBC0E0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{B900F459-C97F-4F7A-864C-0D4A8F307B7F}"
 EndProject
@@ -13,13 +13,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{087C65BB-B5B5-4E29-B63A-B58122C8F576}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyricsApp.Infrastructure.EFCore.DataContext", "LyricsApp.EFCore.DataContext\LyricsApp.Infrastructure.EFCore.DataContext.csproj", "{F0FA84BC-9101-464A-9E2B-B6A79A549089}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyricsApp.Infrastructure.EFCore.DataContext", "Infrastructure\LyricsApp.EFCore.DataContext\LyricsApp.Infrastructure.EFCore.DataContext.csproj", "{F0FA84BC-9101-464A-9E2B-B6A79A549089}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyricsApp.Api", "LyricsApp.Api\LyricsApp.Api.csproj", "{B70F3C57-E0EE-4F63-94D4-8C81A45FDD8B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyricsApp.Api", "Presentation\LyricsApp.Api\LyricsApp.Api.csproj", "{B70F3C57-E0EE-4F63-94D4-8C81A45FDD8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyricsApp.Infrastructure.IoC", "LyiricsApp.Infrastructure.IoC\LyricsApp.Infrastructure.IoC.csproj", "{7876CF83-6630-48C2-9E1C-1B852BBE163C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyricsApp.Infrastructure.IoC", "Infrastructure\LyricsApp.Infrastructure.IoC\LyricsApp.Infrastructure.IoC.csproj", "{7876CF83-6630-48C2-9E1C-1B852BBE163C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyricsApp.Songs", "LyricsApp.Songs\LyricsApp.Songs.csproj", "{C267B459-6F86-4D24-A1D2-8D0CC14C7455}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyricsApp.Songs", "Application\LyricsApp.Songs\LyricsApp.Songs.csproj", "{C267B459-6F86-4D24-A1D2-8D0CC14C7455}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyricsApp.Users", "Application\LyricsApp.Users\LyricsApp.Users.csproj", "{4B110CC7-7926-43FD-BC13-B100CE99D44F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyricsApp.Firebase", "Infrastructure\LyricsApp.Firebase\LyricsApp.Firebase.csproj", "{15C787FB-8564-4B99-9D96-13837F474855}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyricsApp.Application.IoC", "Application\LyricsApp.Application.IoC\LyricsApp.Application.IoC.csproj", "{C161EE87-BDBD-4329-B94B-C4B3538B351D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +53,18 @@ Global
 		{C267B459-6F86-4D24-A1D2-8D0CC14C7455}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C267B459-6F86-4D24-A1D2-8D0CC14C7455}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C267B459-6F86-4D24-A1D2-8D0CC14C7455}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B110CC7-7926-43FD-BC13-B100CE99D44F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B110CC7-7926-43FD-BC13-B100CE99D44F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B110CC7-7926-43FD-BC13-B100CE99D44F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B110CC7-7926-43FD-BC13-B100CE99D44F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15C787FB-8564-4B99-9D96-13837F474855}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15C787FB-8564-4B99-9D96-13837F474855}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15C787FB-8564-4B99-9D96-13837F474855}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15C787FB-8564-4B99-9D96-13837F474855}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C161EE87-BDBD-4329-B94B-C4B3538B351D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C161EE87-BDBD-4329-B94B-C4B3538B351D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C161EE87-BDBD-4329-B94B-C4B3538B351D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C161EE87-BDBD-4329-B94B-C4B3538B351D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,5 +78,8 @@ Global
 		{B70F3C57-E0EE-4F63-94D4-8C81A45FDD8B} = {087C65BB-B5B5-4E29-B63A-B58122C8F576}
 		{7876CF83-6630-48C2-9E1C-1B852BBE163C} = {650AC33D-63D5-4550-A044-366A5C5EF982}
 		{C267B459-6F86-4D24-A1D2-8D0CC14C7455} = {6DFC56FD-1B06-4916-9C3D-8BBBC8E7DFD4}
+		{4B110CC7-7926-43FD-BC13-B100CE99D44F} = {6DFC56FD-1B06-4916-9C3D-8BBBC8E7DFD4}
+		{15C787FB-8564-4B99-9D96-13837F474855} = {650AC33D-63D5-4550-A044-366A5C5EF982}
+		{C161EE87-BDBD-4329-B94B-C4B3538B351D} = {6DFC56FD-1B06-4916-9C3D-8BBBC8E7DFD4}
 	EndGlobalSection
 EndGlobal

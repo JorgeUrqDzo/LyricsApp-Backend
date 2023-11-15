@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -24,7 +24,7 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.11" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LyricsApp.Core\LyricsApp.Core.Entities.csproj" />
-    <ProjectReference Include="..\LyricsApp.Songs\LyricsApp.Songs.csproj" />
+    <ProjectReference Include="..\..\Core\LyricsApp.Core\LyricsApp.Core.Entities.csproj" />
+    <ProjectReference Include="..\..\Application\LyricsApp.Songs\LyricsApp.Songs.csproj" />
   </ItemGroup>
 </Project>

@@ -2,6 +2,7 @@
 using LyricsApp.Infrastructure.EFCore.DataContext.Context;
 using LyricsApp.Infrastructure.EFCore.DataContext.Repositories;
 using LyricsApp.Songs.Repositories;
+using LyricsApp.Firebase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,8 +29,10 @@ namespace LyricsApp.Infrastructure.IoC
                 LogWritableRepository>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+            
             services.AddScoped<ISongRepository, SongRepository>();
+            
+            services.AddFirebaseService();
 
             return services;
         }
