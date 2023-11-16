@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyricsApp.Songs", "Applicat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyricsApp.Users", "Application\LyricsApp.Users\LyricsApp.Users.csproj", "{4B110CC7-7926-43FD-BC13-B100CE99D44F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyricsApp.Firebase", "Infrastructure\LyricsApp.Firebase\LyricsApp.Firebase.csproj", "{15C787FB-8564-4B99-9D96-13837F474855}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyricsApp.Supabase", "Infrastructure\LyricsApp.Supabase\LyricsApp.Supabase.csproj", "{15C787FB-8564-4B99-9D96-13837F474855}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyricsApp.Application.IoC", "Application\LyricsApp.Application.IoC\LyricsApp.Application.IoC.csproj", "{C161EE87-BDBD-4329-B94B-C4B3538B351D}"
 EndProject

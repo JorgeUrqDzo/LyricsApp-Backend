@@ -8,9 +8,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LyricsApp.EFCore.DataContext\LyricsApp.Infrastructure.EFCore.DataContext.csproj" />
-    <ProjectReference Include="..\LyricsApp.Firebase\LyricsApp.Firebase.csproj" />
+    <ProjectReference Include="..\LyricsApp.Supabase\LyricsApp.Supabase.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
   </ItemGroup>
 </Project>

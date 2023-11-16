@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\..\Application\LyricsApp.Users\LyricsApp.Users.csproj"/>
+    <ProjectReference Include="..\..\Core\LyricsApp.Core\LyricsApp.Core.Entities.csproj"/>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="supabase-csharp" Version="0.13.7"/>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0"/>
+  </ItemGroup>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+</Project>

@@ -1,4 +1,5 @@
 using LyricsApp.Users.Services;
+
 using MediatR;
 
 namespace LyricsApp.Users.Commands;
@@ -22,7 +23,7 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, strin
 
     public async Task<string> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
-        var identityId = await authenticationService.RegisterAsync(request.Email, request.Password, request.Name);
+        var identityId = await authenticationService.RegisterAsync(request.Email, request.Password, cancellationToken);
 
         return identityId;
     }
