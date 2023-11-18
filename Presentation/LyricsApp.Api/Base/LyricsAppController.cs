@@ -1,5 +1,7 @@
 ﻿using System;
 using MediatR;
+
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LyricsApp.Api.Base
@@ -8,6 +10,7 @@ namespace LyricsApp.Api.Base
     [Route("api/[controller]")]
     [Produces("application/json")]
     [Consumes("application/json")]
+    [Authorize]
     public class LyricsAppController : ControllerBase
     {
         protected readonly IMediator mediator;

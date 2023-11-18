@@ -1,12 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <ProjectReference Include="..\LyricsApp.Songs\LyricsApp.Songs.csproj" />
-    <ProjectReference Include="..\LyricsApp.Users\LyricsApp.Users.csproj" />
-    <ProjectReference Include="..\LyricsApp.Auth\LyricsApp.Auth.csproj" />
+    <ProjectReference Include="..\..\Core\LyricsApp.Core\LyricsApp.Core.Entities.csproj" />
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.1.1" />
+  </ItemGroup>
 </Project>

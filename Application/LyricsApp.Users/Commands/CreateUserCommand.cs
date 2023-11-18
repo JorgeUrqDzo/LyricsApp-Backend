@@ -1,30 +1,50 @@
-using LyricsApp.Users.Services;
+using LyricsApp.Core.Entities.Data;
+using LyricsApp.Core.Entities.Entities;
+using LyricsApp.Users.Repositories;
 
 using MediatR;
 
 namespace LyricsApp.Users.Commands;
 
-public class CreateUserCommand : IRequest<string>
+public class CreateUserCommand : IRequest<Guid>
 {
+    public CreateUserCommand(string email, string authId, string? displayName)
+    {
+        Email = email;
+        AuthId = authId;
+        DisplayName = displayName ?? string.Empty;
+    }
+
     public string Email { get; set; }
-    public string Password { get; set; }
-    public string Name { get; set; }
+    public string AuthId { get; set; }
+    public string DisplayName { get; set; }
 }
 
 
-public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, string>
+public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Guid>
 {
-    private readonly IAuthenticationService authenticationService;
+    private readonly IUserRepository _userRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public CreateUserCommandHandler(IAuthenticationService authenticationService)
+    public CreateUserCommandHandler(IUserRepository userRepository, IUnitOfWork unitOfWork)
     {
-        this.authenticationService = authenticationService;
+        _userRepository = userRepository;
+        _unitOfWork = unitOfWork;
     }
 
-    public async Task<string> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
-        var identityId = await authenticationService.RegisterAsync(request.Email, request.Password, cancellationToken);
+        var existingUser = await _userRepository.FindUserByAuthId(request.AuthId, cancellationToken);
 
-        return identityId;
+        if (existingUser == null)
+        {
+            var user = new User(Guid.NewGuid(), request.AuthId, request.Email, request.DisplayName);
+
+            await _userRepository.RegisterUserAsync(user, cancellationToken);
+            await _unitOfWork.SaveChanges();
+            return user.Id;
+        }
+
+        return existingUser.Id;
     }
 }

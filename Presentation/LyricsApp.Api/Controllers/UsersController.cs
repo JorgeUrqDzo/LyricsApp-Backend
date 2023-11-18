@@ -11,11 +11,5 @@ public class UsersController : LyricsAppController
     {
     }
 
-    [HttpPost]
-    public async Task<IActionResult> Register(CreateUserCommand command)
-    {
-        var result = await mediator.Send(command);
-
-        return Ok(result);
-    }
+    
 }

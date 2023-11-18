@@ -1,9 +1,5 @@
-﻿using LyricsApp.Core.Entities.Data;
-using LyricsApp.Infrastructure.EFCore.DataContext.Context;
-using LyricsApp.Infrastructure.EFCore.DataContext.Repositories;
-using LyricsApp.Songs.Repositories;
+﻿using LyricsApp.Infrastructure.EFCore.DataContext;
 using LyricsApp.Supabase;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -21,16 +17,7 @@ namespace LyricsApp.Infrastructure.IoC
             string? connectionEntry)
         {
 
-            if (string.IsNullOrEmpty(connectionEntry))
-            {
-                throw new ArgumentNullException(nameof(connectionEntry));
-            }
-
-
-            services.AddDbContext<LyricsAppDbContext>(options => options.UseNpgsql(connectionEntry));
-
-            services.AddScoped<ILogWritableRepository,
-                LogWritableRepository>();
+            services.AddDataContext(configuration, connectionEntry);
 
 
             // Adding Authentication
@@ -56,10 +43,6 @@ namespace LyricsApp.Infrastructure.IoC
                 };
             });
 
-
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-            services.AddScoped<ISongRepository, SongRepository>();
 
             services.AddSupabaseService(configuration);
 

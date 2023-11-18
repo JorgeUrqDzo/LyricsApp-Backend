@@ -1,4 +1,4 @@
-﻿using LyricsApp.Users.Services;
+﻿using LyricsApp.Auth.Services;
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

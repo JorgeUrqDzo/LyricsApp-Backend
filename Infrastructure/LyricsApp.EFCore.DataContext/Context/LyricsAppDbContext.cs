@@ -13,6 +13,8 @@ namespace LyricsApp.Infrastructure.EFCore.DataContext.Context
 
         public DbSet<Log> Logs { get; set; }
         public DbSet<Song> Songs { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
     }
 }

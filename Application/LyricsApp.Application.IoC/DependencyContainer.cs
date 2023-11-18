@@ -1,4 +1,5 @@
-﻿using LyricsApp.Songs;
+﻿using LyricsApp.Auth;
+using LyricsApp.Songs;
 using LyricsApp.Users;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,6 +11,8 @@ public static class DependencyContainer
     {
         services.AddLyricsUsers();
         services.AddSongs();
+        services.AddAuth();
+        
         return services;
     }
 }
