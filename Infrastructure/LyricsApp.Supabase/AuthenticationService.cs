@@ -25,7 +25,8 @@ namespace LyricsApp.Supabase
             }
             catch (System.Exception ex)
             {
-                throw;
+                string message = ex.Message;
+                throw new Exception(message);
             }
         }
 
@@ -38,12 +39,13 @@ namespace LyricsApp.Supabase
             }
             catch (SupbaseGotrue.Exceptions.GotrueException ex)
             {
-                throw;
+                string message = ex.Message;
+                throw new Exception(message);
             }
             catch (System.Exception ex)
             {
-
-                throw;
+                string message = ex.Message;
+                throw new Exception(message);
             }
         }
 
@@ -57,8 +59,14 @@ namespace LyricsApp.Supabase
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                string message = ex.Message;
+                throw new Exception(message);
             }
+        }
+
+        public async Task SignOut(CancellationToken cancellationToken)
+        {
+            await _supabaseClient.Auth.SignOut();
         }
     }
 }

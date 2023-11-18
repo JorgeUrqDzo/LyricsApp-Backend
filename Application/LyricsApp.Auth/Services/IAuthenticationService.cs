@@ -7,6 +7,7 @@ namespace LyricsApp.Auth.Services
         Task<AuthResponse> RegisterAsync(string email, string password, CancellationToken cancellationToken);
         Task<AuthResponse> EmailPasswordSignIn(string email, string password, CancellationToken cancellationToken);
         Task<AuthResponse> GoogleSignInAsync(string idToken, string accessToken, CancellationToken cancellationToken);
+        Task SignOut(CancellationToken cancellationToken);
     }
 
 }

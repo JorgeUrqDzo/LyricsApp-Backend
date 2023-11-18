@@ -7,18 +7,18 @@ namespace LyricsApp.Core.Entities.Entities
         {
         }
 
-        public Song(Guid id, string title, string lyric, Guid owner)
+        public Song(Guid id, string title, string lyric, Guid ownerId)
         {
             Id = id;
             Title = title;
             Lyric = lyric;
-            Owner = owner;
+            OwnerId = ownerId;
         }
 
         public Guid Id { get; private set; }
         public string Title { get; private set; }
         public string Lyric { get; private set; }
-        public Guid Owner { get; private set; }
+        public Guid OwnerId { get; private set; }
 
         public void Update(string title, string lyric)
         {

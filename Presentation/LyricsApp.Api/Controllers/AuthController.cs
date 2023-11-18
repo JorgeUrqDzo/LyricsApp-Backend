@@ -27,7 +27,7 @@ public class AuthController : LyricsAppController
 
             if (result.AuthId != null)
             {
-                await mediator.Send(new CreateUserCommand(command.Email, command.DisplayName, result.AuthId));
+                await mediator.Send(new CreateUserCommand(command.Email, result.AuthId, command.DisplayName));
             }
 
             return Ok(new ApiSuccess<AuthResponse>(result));
@@ -71,5 +71,14 @@ public class AuthController : LyricsAppController
             return BadRequest(new ApiError(ex.Message));
         }
     }
+
+    [Authorize]
+    [HttpPost("SignOut")]
+    public async Task<IActionResult> SignOutSession()
+    {
+        await mediator.Send(new SignOutCommand());
+        return NoContent();
+    }
+
 
 }

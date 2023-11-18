@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace LyricsApp.Api.Base
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("Api/[controller]")]
     [Produces("application/json")]
     [Consumes("application/json")]
     [Authorize]

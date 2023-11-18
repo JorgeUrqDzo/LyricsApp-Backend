@@ -1,8 +1,5 @@
 using LyricsApp.Infrastructure.IoC;
 using LyricsApp.Application.IoC;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 
 
 var builder = WebApplication.CreateBuilder(args);
