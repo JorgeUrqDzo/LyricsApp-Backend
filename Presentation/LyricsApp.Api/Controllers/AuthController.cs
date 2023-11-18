@@ -6,10 +6,12 @@ using LyricsApp.Users.Commands;
 
 using MediatR;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LyricsApp.Api.Controllers;
 
+[AllowAnonymous]
 public class AuthController : LyricsAppController
 {
     public AuthController(IMediator mediator) : base(mediator)
