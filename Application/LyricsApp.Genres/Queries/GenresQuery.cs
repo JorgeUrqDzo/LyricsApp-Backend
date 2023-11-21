@@ -24,7 +24,6 @@ namespace LyricsApp.Genres.Queries
         }
         public async Task<ICollection<GenreDto>> Handle(GenresQuery request, CancellationToken cancellationToken)
         {
-            throw new Exception("test error handling");
             var genres = await _genreRepository.GetGenresByOwnerAsync(_appContext.GetUserId(), cancellationToken);
 
             return genres.Select(g => new GenreDto(g.Id, g.Name)).ToList();
