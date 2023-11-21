@@ -20,9 +20,9 @@ namespace LyricsApp.Infrastructure.EFCore.DataContext.Repositories
             await _context.Users.AddAsync(user, cancellationToken);
         }
 
-        public async Task<User?> FindUserByAuthId(string authId, CancellationToken cancellationToken)
+        public async Task<User?> FindUserByEmail(string email, CancellationToken cancellationToken)
         {
-            var result = await _context.Users.FirstOrDefaultAsync(x => x.AuthId == authId, cancellationToken);
+            var result = await _context.Users.FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
 
             return result;
         }

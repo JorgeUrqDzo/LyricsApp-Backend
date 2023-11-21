@@ -1,4 +1,5 @@
 using LyricsApp.Core.Entities.Data;
+using LyricsApp.Genres.Repositories;
 using LyricsApp.Infrastructure.EFCore.DataContext.Context;
 using LyricsApp.Infrastructure.EFCore.DataContext.Repositories;
 using LyricsApp.Songs.Repositories;
@@ -28,6 +29,7 @@ namespace LyricsApp.Infrastructure.EFCore.DataContext
 
             services.AddScoped<ISongRepository, SongRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IGenreRepository, GenreRepository>();
 
             return services;
         }

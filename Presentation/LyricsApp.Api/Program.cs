@@ -1,5 +1,8 @@
 using LyricsApp.Infrastructure.IoC;
 using LyricsApp.Application.IoC;
+using LyricsApp.Auth.Services;
+using LyricsApp.Api.Services;
+using LyricsApp.Api;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +17,9 @@ builder.Services.AddSwaggerGen(options =>
 {
     options.UseInlineDefinitionsForEnums();
 });
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped<IAppContext, LyricsAppContext>();
 
 builder.Services.AddInfrastructure(builder.Configuration, builder.Configuration.GetConnectionString("DefaultConnection"));
 builder.Services.AddApplication();
@@ -31,9 +37,10 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 // if (app.Environment.IsDevelopment())
 // {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+app.UseSwagger();
+app.UseSwaggerUI();
 // }
+
 
 app.UseHttpsRedirection();
 
@@ -42,6 +49,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.Run();
 

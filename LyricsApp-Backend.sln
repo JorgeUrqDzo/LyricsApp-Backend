@@ -29,6 +29,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyricsApp.Application.IoC",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyricsApp.Auth", "Application\LyricsApp.Auth\LyricsApp.Auth.csproj", "{8476D8E9-F679-4EA0-9BAE-FCB275A8BEF3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyricsApp.Genres", "Application\LyricsApp.Genres\LyricsApp.Genres.csproj", "{6EBCDB29-2857-4655-8603-F2EA69E66F92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyricsApp.JwtTokenHandler", "Infrastructure\LyricsApp.JwtTokenHandler\LyricsApp.JwtTokenHandler.csproj", "{BAF69519-B2CC-4C44-8B92-4D0E9F266429}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +75,14 @@ Global
 		{8476D8E9-F679-4EA0-9BAE-FCB275A8BEF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8476D8E9-F679-4EA0-9BAE-FCB275A8BEF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8476D8E9-F679-4EA0-9BAE-FCB275A8BEF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EBCDB29-2857-4655-8603-F2EA69E66F92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EBCDB29-2857-4655-8603-F2EA69E66F92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EBCDB29-2857-4655-8603-F2EA69E66F92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EBCDB29-2857-4655-8603-F2EA69E66F92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAF69519-B2CC-4C44-8B92-4D0E9F266429}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAF69519-B2CC-4C44-8B92-4D0E9F266429}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAF69519-B2CC-4C44-8B92-4D0E9F266429}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAF69519-B2CC-4C44-8B92-4D0E9F266429}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -88,5 +100,7 @@ Global
 		{15C787FB-8564-4B99-9D96-13837F474855} = {650AC33D-63D5-4550-A044-366A5C5EF982}
 		{C161EE87-BDBD-4329-B94B-C4B3538B351D} = {6DFC56FD-1B06-4916-9C3D-8BBBC8E7DFD4}
 		{8476D8E9-F679-4EA0-9BAE-FCB275A8BEF3} = {6DFC56FD-1B06-4916-9C3D-8BBBC8E7DFD4}
+		{6EBCDB29-2857-4655-8603-F2EA69E66F92} = {6DFC56FD-1B06-4916-9C3D-8BBBC8E7DFD4}
+		{BAF69519-B2CC-4C44-8B92-4D0E9F266429} = {650AC33D-63D5-4550-A044-366A5C5EF982}
 	EndGlobalSection
 EndGlobal

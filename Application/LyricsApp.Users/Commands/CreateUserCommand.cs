@@ -34,14 +34,14 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Guid>
 
     public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
-        var existingUser = await _userRepository.FindUserByAuthId(request.AuthId, cancellationToken);
+        var existingUser = await _userRepository.FindUserByEmail(request.Email, cancellationToken);
 
         if (existingUser == null)
         {
             var user = new User(Guid.NewGuid(), request.AuthId, request.Email, request.DisplayName);
 
             await _userRepository.RegisterUserAsync(user, cancellationToken);
-            await _unitOfWork.SaveChanges();
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
             return user.Id;
         }
 

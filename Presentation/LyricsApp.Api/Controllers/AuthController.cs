@@ -3,6 +3,7 @@ using LyricsApp.Api.Responses;
 using LyricsApp.Auth.Commands;
 using LyricsApp.Auth.DTOs;
 using LyricsApp.Users.Commands;
+using LyricsApp.Users.Queries;
 
 using MediatR;
 
@@ -24,13 +25,17 @@ public class AuthController : LyricsAppController
         try
         {
             var result = await mediator.Send(command);
+            Guid userId = Guid.Empty;
 
             if (result.AuthId != null)
             {
-                await mediator.Send(new CreateUserCommand(command.Email, result.AuthId, command.DisplayName));
+                userId = await mediator.Send(new CreateUserCommand(command.Email, result.AuthId, command.DisplayName));
             }
 
-            return Ok(new ApiSuccess<AuthResponse>(result));
+            var response = new AuthResponseDto(result.AccessToken, result.RefreshToken, userId);
+            response = await mediator.Send(new JwtTokenGeneratorCommand(response));
+
+            return Ok(new ApiSuccess<AuthResponseDto>(response));
         }
         catch (System.Exception ex)
         {
@@ -44,7 +49,19 @@ public class AuthController : LyricsAppController
         try
         {
             var result = await mediator.Send(command);
-            return Ok(new ApiSuccess<AuthResponse>(result));
+
+            var userId = await mediator.Send(new GetUserByEmailQuery(command.Email));
+
+            if (result.AuthId is null || userId is null)
+            {
+                return BadRequest(new ApiError("User not found"));
+            }
+
+            var response = new AuthResponseDto(result.AccessToken, result.RefreshToken, userId.Value);
+
+            response = await mediator.Send(new JwtTokenGeneratorCommand(response));
+
+            return Ok(new ApiSuccess<AuthResponseDto>(response));
         }
         catch (System.Exception ex)
         {
@@ -60,11 +77,17 @@ public class AuthController : LyricsAppController
         {
             var result = await mediator.Send(command);
 
+            Guid userId = Guid.Empty;
+
             if (result.AuthId != null)
             {
-                await mediator.Send(new CreateUserCommand(command.Email, result.AuthId, command.DisplayName));
+                userId = await mediator.Send(new CreateUserCommand(command.Email, result.AuthId, command.DisplayName));
             }
-            return Ok(new ApiSuccess<AuthResponse>(result));
+
+            var response = new AuthResponseDto(result.AccessToken, result.RefreshToken, userId);
+            response = await mediator.Send(new JwtTokenGeneratorCommand(response));
+
+            return Ok(new ApiSuccess<AuthResponseDto>(response));
         }
         catch (System.Exception ex)
         {

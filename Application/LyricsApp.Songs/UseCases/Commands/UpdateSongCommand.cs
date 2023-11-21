@@ -1,4 +1,5 @@
-﻿using LyricsApp.Core.Entities.Data;
+﻿using LyricsApp.Auth.Services;
+using LyricsApp.Core.Entities.Data;
 using LyricsApp.Core.Entities.Exceptions;
 using LyricsApp.Songs.DTOs;
 using LyricsApp.Songs.Repositories;
@@ -17,16 +18,18 @@ namespace LyricsApp.Songs.UseCases.Commands
     {
         private readonly ISongRepository songRepository;
         private readonly IUnitOfWork unitOfWork;
+        private readonly IAppContext _appContext;
 
-        public UpdateSongCommandHandler(ISongRepository songRepository, IUnitOfWork unitOfWork)
+        public UpdateSongCommandHandler(ISongRepository songRepository, IUnitOfWork unitOfWork, IAppContext appContext)
         {
             this.songRepository = songRepository;
             this.unitOfWork = unitOfWork;
+            _appContext = appContext;
         }
 
         public async Task<SongDto> Handle(UpdateSongCommand request, CancellationToken cancellationToken)
         {
-            var currentSong = await songRepository.GetSongByIdAsync(request.Id);
+            var currentSong = await songRepository.GetSongByIdAsync(request.Id, _appContext.GetUserId());
 
             if (currentSong == null)
             {
@@ -37,7 +40,7 @@ namespace LyricsApp.Songs.UseCases.Commands
 
             songRepository.Update(currentSong);
 
-            await unitOfWork.SaveChanges();
+            await unitOfWork.SaveChangesAsync(cancellationToken);
 
             return new SongDto(currentSong.Id, currentSong.Title, currentSong.Lyric);
         }

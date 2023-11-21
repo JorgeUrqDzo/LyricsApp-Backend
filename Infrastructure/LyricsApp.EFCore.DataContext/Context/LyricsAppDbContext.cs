@@ -1,4 +1,5 @@
-﻿using LyricsApp.Core.Entities.Entities;
+﻿using LyricsApp.Core.Entities;
+using LyricsApp.Core.Entities.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace LyricsApp.Infrastructure.EFCore.DataContext.Context
@@ -15,6 +16,7 @@ namespace LyricsApp.Infrastructure.EFCore.DataContext.Context
         public DbSet<Song> Songs { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<Genre> Genres { get; set; }
 
     }
 }

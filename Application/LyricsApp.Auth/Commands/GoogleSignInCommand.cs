@@ -7,7 +7,10 @@ namespace LyricsApp.Auth.Commands
 {
     public class GoogleSignInCommand : IRequest<AuthResponse>
     {
-        public GoogleSignInCommand(string email, string displayName, string idToken, string accessToken)
+        public GoogleSignInCommand(string email,
+                                   string displayName,
+                                   string idToken,
+                                   string accessToken)
         {
             Email = email;
             DisplayName = displayName;
@@ -30,11 +33,14 @@ namespace LyricsApp.Auth.Commands
             _authenticationService = authenticationService;
         }
 
-        public async Task<AuthResponse> Handle(GoogleSignInCommand request, CancellationToken cancellationToken)
+        public async Task<AuthResponse> Handle(GoogleSignInCommand request,
+                                               CancellationToken cancellationToken)
         {
             try
             {
-                return await _authenticationService.GoogleSignInAsync(request.IdToken, request.AccessToken, cancellationToken);
+                return await _authenticationService.GoogleSignInAsync(request.IdToken,
+                                                                      request.AccessToken,
+                                                                      cancellationToken);
             }
             catch (System.Exception ex)
             {

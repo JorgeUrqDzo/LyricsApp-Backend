@@ -15,12 +15,12 @@ namespace LyricsApp.Infrastructure.EFCore.DataContext.Repositories
             this.context = context;
         }
 
-        public async ValueTask<int> SaveChanges()
+        public async ValueTask<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
             int Result;
             try
             {
-                Result = await context.SaveChangesAsync();
+                Result = await context.SaveChangesAsync(cancellationToken);
             }
             catch (DbUpdateException ex)
             {

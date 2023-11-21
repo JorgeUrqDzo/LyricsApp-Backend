@@ -1,4 +1,6 @@
 ﻿using System;
+
+using LyricsApp.Auth.Services;
 using LyricsApp.Core.Entities;
 using LyricsApp.Songs.DTOs;
 using LyricsApp.Songs.Repositories;
@@ -23,15 +25,19 @@ namespace LyricsApp.Songs.UseCases.Queries
     public class GetSongsByUserQueryHandler : IRequestHandler<GetSongsByUserQuery, PagedResult<SongDto>>
     {
         private readonly ISongRepository songRepository;
+        private readonly IAppContext _appContext;
 
-        public GetSongsByUserQueryHandler(ISongRepository songRepository)
+
+        public GetSongsByUserQueryHandler(ISongRepository songRepository, IAppContext appContext)
         {
             this.songRepository = songRepository;
+            _appContext = appContext;
+
         }
 
         public Task<PagedResult<SongDto>> Handle(GetSongsByUserQuery request, CancellationToken cancellationToken)
         {
-            var userId = Guid.NewGuid();
+            var userId = _appContext.GetUserId();
             var songsPaged = songRepository.GetSongsByUserAsync(userId, request.Query, request.Page, request.Order);
             var songsDtoPaged = new PagedResult<SongDto>(songsPaged, songsPaged.Results.Select(x => new SongDto(x.Id, x.Title, x.Lyric)).ToList());
 

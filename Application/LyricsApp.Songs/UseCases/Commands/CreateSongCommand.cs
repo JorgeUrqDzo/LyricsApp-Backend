@@ -1,4 +1,5 @@
-﻿using LyricsApp.Core.Entities.Data;
+﻿using LyricsApp.Auth.Services;
+using LyricsApp.Core.Entities.Data;
 using LyricsApp.Core.Entities.Entities;
 using LyricsApp.Songs.DTOs;
 using LyricsApp.Songs.Repositories;
@@ -16,20 +17,22 @@ namespace LyricsApp.Songs.UseCases.Commands
     {
         private readonly ISongRepository songRepository;
         private readonly IUnitOfWork unitOfWork;
+        private readonly IAppContext _appContext;
 
-        public CreateSongCommandHandler(ISongRepository songRepository, IUnitOfWork unitOfWork)
+        public CreateSongCommandHandler(ISongRepository songRepository, IUnitOfWork unitOfWork, IAppContext appContext)
         {
             this.songRepository = songRepository;
             this.unitOfWork = unitOfWork;
+            _appContext = appContext;
         }
 
         public async Task<SongDto> Handle(CreateSongCommand request, CancellationToken cancellationToken)
         {
-            var newSong = new Song(Guid.NewGuid(), request.Title, request.Lyric, Guid.Empty);
+            var newSong = new Song(Guid.NewGuid(), request.Title, request.Lyric, _appContext.GetUserId());
 
             await songRepository.CreateSongAsync(newSong);
 
-            await unitOfWork.SaveChanges();
+            await unitOfWork.SaveChangesAsync(cancellationToken);
 
             return new SongDto(newSong.Id, newSong.Title, newSong.Lyric);
         }

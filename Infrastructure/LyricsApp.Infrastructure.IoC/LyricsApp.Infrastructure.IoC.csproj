@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\LyricsApp.EFCore.DataContext\LyricsApp.Infrastructure.EFCore.DataContext.csproj" />
     <ProjectReference Include="..\LyricsApp.Supabase\LyricsApp.Supabase.csproj" />
+    <ProjectReference Include="..\LyricsApp.JwtTokenHandler\LyricsApp.JwtTokenHandler.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.1.1" />

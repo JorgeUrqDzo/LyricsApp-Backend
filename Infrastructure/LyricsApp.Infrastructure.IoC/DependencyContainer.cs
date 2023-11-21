@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using LyricsApp.Auth.Settings;
+using LyricsApp.JwtTokenHandler;
 
 namespace LyricsApp.Infrastructure.IoC
 {
@@ -16,6 +18,10 @@ namespace LyricsApp.Infrastructure.IoC
             IConfiguration configuration,
             string? connectionEntry)
         {
+
+            var authenticationSettings = configuration.GetSection("Authentication").Get<AuthenticationSettings>();
+            services.AddSingleton(authenticationSettings!);
+            services.AddJwtTokenHandler();
 
             services.AddDataContext(configuration, connectionEntry);
 

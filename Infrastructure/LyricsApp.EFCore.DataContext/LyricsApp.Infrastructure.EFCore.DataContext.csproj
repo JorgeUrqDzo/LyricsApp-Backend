@@ -27,5 +27,6 @@
     <ProjectReference Include="..\..\Core\LyricsApp.Core\LyricsApp.Core.Entities.csproj" />
     <ProjectReference Include="..\..\Application\LyricsApp.Songs\LyricsApp.Songs.csproj" />
     <ProjectReference Include="..\..\Application\LyricsApp.Users\LyricsApp.Users.csproj" />
+    <ProjectReference Include="..\..\Application\LyricsApp.Genres\LyricsApp.Genres.csproj" />
   </ItemGroup>
 </Project>
