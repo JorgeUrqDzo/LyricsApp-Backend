@@ -1,4 +1,5 @@
-﻿using LyricsApp.Songs.DTOs;
+﻿using LyricsApp.Auth.Services;
+using LyricsApp.Songs.DTOs;
 using LyricsApp.Songs.Repositories;
 using MediatR;
 
@@ -12,15 +13,17 @@ public class SearchSongByTitleQuery : IRequest<IEnumerable<SearchSongsDto>>
 public class SearchSongByTitleQueryHandler : IRequestHandler<SearchSongByTitleQuery, IEnumerable<SearchSongsDto>>
 {
     private readonly ISongRepository songRepository;
+    private readonly IAppContext _appContext;
 
-    public SearchSongByTitleQueryHandler(ISongRepository songRepository)
+    public SearchSongByTitleQueryHandler(ISongRepository songRepository, IAppContext appContext)
     {
         this.songRepository = songRepository;
+        _appContext = appContext;
     }
 
     public async Task<IEnumerable<SearchSongsDto>> Handle(SearchSongByTitleQuery request, CancellationToken cancellationToken)
     {
-        var songs = await songRepository.SearchSongsByTitle(request.Title);
+        var songs = await songRepository.SearchSongsByTitle(request.Title, _appContext.GetUserId());
         var songsDto = songs.Select(x => new SearchSongsDto(x.Id, x.Title));
 
         return songsDto;
