@@ -24,7 +24,13 @@ public class SearchSongByTitleQueryHandler : IRequestHandler<SearchSongByTitleQu
     public async Task<IEnumerable<SearchSongsDto>> Handle(SearchSongByTitleQuery request, CancellationToken cancellationToken)
     {
         var songs = await songRepository.SearchSongsByTitle(request.Title, _appContext.GetUserId());
-        var songsDto = songs.Select(x => new SearchSongsDto(x.Id, x.Title));
+        var songsDto = songs.Select(x => 
+            new SearchSongsDto(
+                x.Id, 
+                x.Title, 
+                x.Genre != null ? new GenreDto(x.Genre.Id, x.Genre.Name) : null
+            )
+        );
 
         return songsDto;
     }

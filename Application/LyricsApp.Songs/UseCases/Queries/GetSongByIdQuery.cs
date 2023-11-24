@@ -35,7 +35,12 @@ namespace LyricsApp.Songs.UseCases.Queries
                 throw new NotFoundException("Song not found");
             }
 
-            return new SongDto(song.Id, song.Title, song.Lyric);
+            return new SongDto(
+                song.Id, 
+                song.Title, 
+                song.Lyric,
+                song.Genre != null ? new GenreDto(song.Genre.Id, song.Genre.Name) : null
+            );
         }
     }
 }

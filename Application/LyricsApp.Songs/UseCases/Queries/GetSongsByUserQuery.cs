@@ -4,6 +4,7 @@ using LyricsApp.Auth.Services;
 using LyricsApp.Core.Entities;
 using LyricsApp.Songs.DTOs;
 using LyricsApp.Songs.Repositories;
+
 using MediatR;
 
 namespace LyricsApp.Songs.UseCases.Queries
@@ -39,8 +40,17 @@ namespace LyricsApp.Songs.UseCases.Queries
         {
             var userId = _appContext.GetUserId();
             var songsPaged = songRepository.GetSongsByUserAsync(userId, request.Query, request.Page, request.Order);
-            var songsDtoPaged = new PagedResult<SongDto>(songsPaged, songsPaged.Results.Select(x => new SongDto(x.Id, x.Title, x.Lyric)).ToList());
-
+            var songsDtoPaged = new PagedResult<SongDto>(
+                songsPaged,
+                songsPaged.Results.Select(x =>
+                    new SongDto(
+                        x.Id, 
+                        x.Title, 
+                        x.Lyric, 
+                        x.Genre != null ? new GenreDto(x.Genre.Id, x.Genre.Name) : null
+                    )
+                ).ToList()
+            );
 
             return Task.FromResult(songsDtoPaged);
         }

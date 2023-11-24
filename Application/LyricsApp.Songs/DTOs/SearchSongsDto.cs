@@ -1,5 +1,7 @@
-﻿namespace LyricsApp.Songs
+﻿using LyricsApp.Songs.DTOs;
+
+namespace LyricsApp.Songs
 {
-    public record SearchSongsDto(Guid? Id, string Title);
+    public record SearchSongsDto(Guid? Id, string Title, GenreDto? Genre);
 }
 

@@ -17,6 +17,8 @@ namespace LyricsApp.Infrastructure.EFCore.DataContext.Context
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Genre> Genres { get; set; }
+        public DbSet<Playlist> Playlists { get; set; }
+        public DbSet<PlaylistSong> PlaylistSongs { get; set; }
 
     }
 }

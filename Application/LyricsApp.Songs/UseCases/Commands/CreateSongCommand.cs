@@ -3,6 +3,7 @@ using LyricsApp.Core.Entities.Data;
 using LyricsApp.Core.Entities.Entities;
 using LyricsApp.Songs.DTOs;
 using LyricsApp.Songs.Repositories;
+
 using MediatR;
 
 namespace LyricsApp.Songs.UseCases.Commands
@@ -11,6 +12,7 @@ namespace LyricsApp.Songs.UseCases.Commands
     {
         public required string Title { get; init; }
         public required string Lyric { get; init; }
+        public Guid? GenreId { get; init; } = null;
     }
 
     public class CreateSongCommandHandler : IRequestHandler<CreateSongCommand, SongDto>
@@ -28,13 +30,18 @@ namespace LyricsApp.Songs.UseCases.Commands
 
         public async Task<SongDto> Handle(CreateSongCommand request, CancellationToken cancellationToken)
         {
-            var newSong = new Song(Guid.NewGuid(), request.Title, request.Lyric, _appContext.GetUserId());
+            var newSong = new Song(Guid.NewGuid(), request.Title, request.Lyric, _appContext.GetUserId(), request.GenreId);
 
             await songRepository.CreateSongAsync(newSong);
 
             await unitOfWork.SaveChangesAsync(cancellationToken);
 
-            return new SongDto(newSong.Id, newSong.Title, newSong.Lyric);
+            return new SongDto(
+                newSong.Id, 
+                newSong.Title, 
+                newSong.Lyric,
+                newSong.Genre != null ? new GenreDto(newSong.Genre.Id, newSong.Genre.Name) : null
+            );
         }
     }
 }

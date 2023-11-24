@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyricsApp.Genres", "Applica
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyricsApp.JwtTokenHandler", "Infrastructure\LyricsApp.JwtTokenHandler\LyricsApp.JwtTokenHandler.csproj", "{BAF69519-B2CC-4C44-8B92-4D0E9F266429}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LyricsApp.Playlists", "Application\LyricsApp.Playlists\LyricsApp.Playlists.csproj", "{05F7891D-BD90-4FD0-B189-8528BC61519E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,10 @@ Global
 		{BAF69519-B2CC-4C44-8B92-4D0E9F266429}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BAF69519-B2CC-4C44-8B92-4D0E9F266429}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BAF69519-B2CC-4C44-8B92-4D0E9F266429}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05F7891D-BD90-4FD0-B189-8528BC61519E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05F7891D-BD90-4FD0-B189-8528BC61519E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05F7891D-BD90-4FD0-B189-8528BC61519E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05F7891D-BD90-4FD0-B189-8528BC61519E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,5 +108,6 @@ Global
 		{8476D8E9-F679-4EA0-9BAE-FCB275A8BEF3} = {6DFC56FD-1B06-4916-9C3D-8BBBC8E7DFD4}
 		{6EBCDB29-2857-4655-8603-F2EA69E66F92} = {6DFC56FD-1B06-4916-9C3D-8BBBC8E7DFD4}
 		{BAF69519-B2CC-4C44-8B92-4D0E9F266429} = {650AC33D-63D5-4550-A044-366A5C5EF982}
+		{05F7891D-BD90-4FD0-B189-8528BC61519E} = {6DFC56FD-1B06-4916-9C3D-8BBBC8E7DFD4}
 	EndGlobalSection
 EndGlobal

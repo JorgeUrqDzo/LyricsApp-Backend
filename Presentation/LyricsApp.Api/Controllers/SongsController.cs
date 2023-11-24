@@ -5,7 +5,9 @@ using LyricsApp.Songs;
 using LyricsApp.Songs.DTOs;
 using LyricsApp.Songs.UseCases.Commands;
 using LyricsApp.Songs.UseCases.Queries;
+
 using MediatR;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace LyricsApp.Api.Controllers
@@ -84,14 +86,12 @@ namespace LyricsApp.Api.Controllers
 
             try
             {
-                await mediator.Send(request);
+                return Ok(new ApiSuccess<SongDto>(await mediator.Send(request)));
             }
             catch (Exception ex)
             {
                 return NotFound(new ApiError(ex.Message));
             }
-
-            return Ok(new ApiSuccess<SongDto>(new SongDto(request.Id, request.Title, request.Lyric)));
         }
 
         // DELETE: api/Songs/5

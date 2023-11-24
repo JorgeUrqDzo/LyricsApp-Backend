@@ -4,6 +4,7 @@
     <ProjectReference Include="..\LyricsApp.Users\LyricsApp.Users.csproj" />
     <ProjectReference Include="..\LyricsApp.Auth\LyricsApp.Auth.csproj" />
     <ProjectReference Include="..\LyricsApp.Genres\LyricsApp.Genres.csproj" />
+    <ProjectReference Include="..\LyricsApp.Playlists\LyricsApp.Playlists.csproj" />
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>

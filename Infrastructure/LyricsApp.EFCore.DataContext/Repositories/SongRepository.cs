@@ -34,14 +34,20 @@ namespace LyricsApp.Infrastructure.EFCore.DataContext.Repositories
 
         public async Task<Song?> GetSongByIdAsync(Guid id, Guid ownerId)
         {
-            return await context.Songs.FirstOrDefaultAsync(x => x.Id == id && x.OwnerId == ownerId);
+            return await context.Songs
+            .Include(x => x.Genre)
+            .FirstOrDefaultAsync(x =>
+             (x.Genre == null || x.Genre.OwnerId == ownerId) &&
+             x.Id == id && x.OwnerId == ownerId);
         }
 
         public PagedResult<Song> GetSongsByUserAsync(Guid userId, string query, int page, OrderDirectionEnum order)
         {
 
             var songs = context.Songs
+                .Include(x => x.Genre)
                 .Where(x =>
+                    (x.Genre == null || x.Genre.OwnerId == userId) &&
                     x.OwnerId == userId && (
                     x.Title.ToLower().Contains(query.ToLower()) ||
                     x.Lyric.ToLower().Contains(query.ToLower()))
@@ -55,7 +61,12 @@ namespace LyricsApp.Infrastructure.EFCore.DataContext.Repositories
         public async Task<ICollection<Song>> SearchSongsByTitle(string query, Guid ownerId)
         {
             return await context.Songs
-            .Where(x => x.OwnerId == ownerId && x.Title.ToLower().Contains(query.ToLower()))
+            .Include(x => x.Genre)
+            .Where(x =>
+                (x.Genre == null || x.Genre.OwnerId == ownerId) &&
+                x.OwnerId == ownerId &&
+                x.Title.ToLower().Contains(query.ToLower())
+            )
             .OrderBy(x => x.Title)
             .Take(10)
             .ToListAsync();

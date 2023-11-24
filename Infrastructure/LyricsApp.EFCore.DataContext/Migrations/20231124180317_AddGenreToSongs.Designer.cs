@@ -3,6 +3,7 @@ using System;
 using LyricsApp.Infrastructure.EFCore.DataContext.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LyricsApp.Infrastructure.EFCore.DataContext.Migrations
 {
     [DbContext(typeof(LyricsAppDbContext))]
-    partial class LyricsAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231124180317_AddGenreToSongs")]
+    partial class AddGenreToSongs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

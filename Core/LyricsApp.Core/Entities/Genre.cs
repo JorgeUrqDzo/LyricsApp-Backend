@@ -1,4 +1,6 @@
-﻿namespace LyricsApp.Core.Entities;
+﻿using LyricsApp.Core.Entities.Entities;
+
+namespace LyricsApp.Core.Entities;
 
 public class Genre
 {
@@ -14,6 +16,8 @@ public class Genre
     public Guid Id { get; private set; }
     public string Name { get; private set; }
     public Guid OwnerId { get; private set; }
+
+    public ICollection<Song> Songs { get; set; }
 
     public void UpdateName(string name)
     {

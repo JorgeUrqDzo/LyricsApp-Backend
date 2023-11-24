@@ -15,10 +15,22 @@ namespace LyricsApp.Core.Entities.Entities
             OwnerId = ownerId;
         }
 
+        public Song(Guid id, string title, string lyric, Guid ownerId, Guid? genreId)
+        {
+            Id = id;
+            Title = title;
+            Lyric = lyric;
+            OwnerId = ownerId;
+            GenreId = genreId;
+        }
+
         public Guid Id { get; private set; }
         public string Title { get; private set; }
         public string Lyric { get; private set; }
         public Guid OwnerId { get; private set; }
+        public Guid? GenreId { get; set; }
+
+        public Genre? Genre { get; set; }
 
         public void Update(string title, string lyric)
         {
@@ -31,6 +43,11 @@ namespace LyricsApp.Core.Entities.Entities
             {
                 Lyric = lyric;
             }
+        }
+
+        public void UpdateGenre(Guid? genreId)
+        {
+            GenreId = genreId;
         }
     }
 }

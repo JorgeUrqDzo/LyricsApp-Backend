@@ -3,6 +3,7 @@ using LyricsApp.Core.Entities.Data;
 using LyricsApp.Core.Entities.Exceptions;
 using LyricsApp.Songs.DTOs;
 using LyricsApp.Songs.Repositories;
+
 using MediatR;
 
 namespace LyricsApp.Songs.UseCases.Commands
@@ -12,6 +13,7 @@ namespace LyricsApp.Songs.UseCases.Commands
         public required Guid Id { get; init; }
         public required string Title { get; init; }
         public required string Lyric { get; init; }
+        public Guid? GenreId { get; init; } = null;
     }
 
     public class UpdateSongCommandHandler : IRequestHandler<UpdateSongCommand, SongDto>
@@ -37,12 +39,18 @@ namespace LyricsApp.Songs.UseCases.Commands
             }
 
             currentSong.Update(request.Title, request.Lyric);
+            currentSong.UpdateGenre(request.GenreId);
 
             songRepository.Update(currentSong);
 
             await unitOfWork.SaveChangesAsync(cancellationToken);
 
-            return new SongDto(currentSong.Id, currentSong.Title, currentSong.Lyric);
+            return new SongDto(
+                currentSong.Id,
+                currentSong.Title,
+                currentSong.Lyric,
+                new GenreDto(currentSong.GenreId ?? Guid.Empty, string.Empty)
+            );
         }
     }
 }
