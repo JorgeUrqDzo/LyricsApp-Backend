@@ -19,6 +19,13 @@ public class AuthController : LyricsAppController
     {
     }
 
+    [Authorize]
+    [HttpGet]
+    public IActionResult IsLoggedIn()
+    {
+        return Ok(true);
+    }
+
     [HttpPost("LoginWithGoogle")]
     public async Task<IActionResult> LoginWithGoogle(GoogleSignInCommand command)
     {
@@ -32,7 +39,7 @@ public class AuthController : LyricsAppController
                 userId = await mediator.Send(new CreateUserCommand(command.Email, result.AuthId, command.DisplayName));
             }
 
-            var response = new AuthResponseDto(result.AccessToken, result.RefreshToken, userId);
+            var response = new AuthResponseDto(result.AccessToken, result.RefreshToken, userId, command.DisplayName);
             response = await mediator.Send(new JwtTokenGeneratorCommand(response));
 
             return Ok(new ApiSuccess<AuthResponseDto>(response));
@@ -50,14 +57,14 @@ public class AuthController : LyricsAppController
         {
             var result = await mediator.Send(command);
 
-            var userId = await mediator.Send(new GetUserByEmailQuery(command.Email));
+            var user = await mediator.Send(new GetUserByEmailQuery(command.Email));
 
-            if (result.AuthId is null || userId is null)
+            if (result.AuthId is null || user is null)
             {
                 return BadRequest(new ApiError("User not found"));
             }
 
-            var response = new AuthResponseDto(result.AccessToken, result.RefreshToken, userId.Value);
+            var response = new AuthResponseDto(result.AccessToken, result.RefreshToken, user.Id, user?.DisplayName);
 
             response = await mediator.Send(new JwtTokenGeneratorCommand(response));
 
@@ -84,7 +91,7 @@ public class AuthController : LyricsAppController
                 userId = await mediator.Send(new CreateUserCommand(command.Email, result.AuthId, command.DisplayName));
             }
 
-            var response = new AuthResponseDto(result.AccessToken, result.RefreshToken, userId);
+            var response = new AuthResponseDto(result.AccessToken, result.RefreshToken, userId, command.DisplayName);
             response = await mediator.Send(new JwtTokenGeneratorCommand(response));
 
             return Ok(new ApiSuccess<AuthResponseDto>(response));

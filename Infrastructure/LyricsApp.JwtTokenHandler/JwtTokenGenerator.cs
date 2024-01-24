@@ -37,15 +37,14 @@ public class JwtTokenGenerator: IJwtTokenGeneratorService
         _signInKey = authenticationSettings.IssuerSigningKey;
     }
 
-    public string CreateSecurityToken(JwtSecurityToken jwt, string userId)
+    public string CreateSecurityToken(JwtSecurityToken jwt, string userId, string displayName)
     {
         // var userId = jwt.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value;
         var email = jwt.Claims.FirstOrDefault(c => c.Type == "email")?.Value;
-        var displayName = jwt.Claims.FirstOrDefault(c => c.Type == "DisplayName")?.Value;
+        // var displayName = jwt.Claims.FirstOrDefault(c => c.Type == "DisplayName")?.Value;
         // var role = jwt.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
 
         var expirationTime = 1440;
-
         var token = new JwtTokenBuilder()
                     .AddSecurityKey(new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_signInKey)))
                     .AddSubject(jwt.Subject)

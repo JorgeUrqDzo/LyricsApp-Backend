@@ -1,11 +1,12 @@
 
+using LyricsApp.Core.Entities.Entities;
 using LyricsApp.Users.Repositories;
 
 using MediatR;
 
 namespace LyricsApp.Users.Queries
 {
-    public class GetUserByEmailQuery : IRequest<Guid?>
+    public class GetUserByEmailQuery : IRequest<User?>
     {
         public string Email { get; set; }
 
@@ -17,7 +18,7 @@ namespace LyricsApp.Users.Queries
     }
 
 
-    public class GetUserByEmailQueryHandler : IRequestHandler<GetUserByEmailQuery, Guid?>
+    public class GetUserByEmailQueryHandler : IRequestHandler<GetUserByEmailQuery, User?>
     {
         private readonly IUserRepository _userRepository;
 
@@ -27,11 +28,11 @@ namespace LyricsApp.Users.Queries
             _userRepository = userRepository;
         }
 
-        public async Task<Guid?> Handle(GetUserByEmailQuery request, CancellationToken cancellationToken)
+        public async Task<User?> Handle(GetUserByEmailQuery request, CancellationToken cancellationToken)
         {
             var existingUser = await _userRepository.FindUserByEmail(request.Email, cancellationToken);
 
-            return existingUser?.Id;
+            return existingUser;
         }
 
     }

@@ -14,11 +14,13 @@ namespace LyricsApp.Auth.Commands
             JwtToken = data.AccessToken;
             UserId = data.UserId;
             RefreshToken = data.RefreshToken;
+            DisplayName = data.DisplayName ?? string.Empty;
         }
 
         public string JwtToken { get; set; }
         public string RefreshToken { get; set; }
         public Guid UserId { get; set; }
+        public string DisplayName { get; set; }
     }
 
     public class JwtTokenGeneratorCommandHandler : IRequestHandler<JwtTokenGeneratorCommand, AuthResponseDto>
@@ -32,9 +34,9 @@ namespace LyricsApp.Auth.Commands
 
         public Task<AuthResponseDto> Handle(JwtTokenGeneratorCommand request, CancellationToken cancellationToken)
         {
-            var result = _jwtTokenGeneratorService.CreateSecurityToken(new JwtSecurityToken(request.JwtToken), request.UserId.ToString());
+            var result = _jwtTokenGeneratorService.CreateSecurityToken(new JwtSecurityToken(request.JwtToken), request.UserId.ToString(), request.DisplayName);
 
-            var jwt = new AuthResponseDto(result, request.RefreshToken, request.UserId);
+            var jwt = new AuthResponseDto(result, request.RefreshToken, request.UserId, request.DisplayName);
 
             return Task.FromResult(jwt);
         }
