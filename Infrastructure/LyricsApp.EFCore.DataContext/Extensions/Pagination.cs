@@ -12,11 +12,11 @@ namespace LyricsApp.Infrastructure.EFCore.DataContext.Extensions
             {
                 CurrentPage = page,
                 PageSize = pageSize,
-                PageResults = query.Count()
+                TotalRecords = query.Count()
             };
 
 
-            var pageCount = (double)result.PageResults / pageSize;
+            var pageCount = (double)result.TotalRecords / pageSize;
             result.Pages = (int)Math.Ceiling(pageCount);
 
             var skip = (page - 1) * pageSize;

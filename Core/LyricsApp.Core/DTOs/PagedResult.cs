@@ -13,7 +13,7 @@ public class PagedResult<T> : PagedResultBase where T : class
         CurrentPage = baseValues.CurrentPage;
         Pages = baseValues.Pages;
         PageSize = baseValues.PageSize;
-        PageResults = baseValues.PageResults;
+        TotalRecords = baseValues.TotalRecords;
         Results = values;
     }
 }

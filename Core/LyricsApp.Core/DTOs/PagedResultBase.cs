@@ -5,7 +5,7 @@ public abstract class PagedResultBase
     public int CurrentPage { get; set; }
     public int Pages { get; set; }
     public int PageSize { get; set; }
-    public int PageResults { get; set; }
+    public int TotalRecords { get; set; }
 
     // public int FirstRowOnPage
     // {
