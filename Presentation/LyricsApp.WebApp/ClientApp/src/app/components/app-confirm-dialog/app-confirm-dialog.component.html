@@ -1,0 +1,14 @@
+<h5 mat-dialog-title  class="mt-2">{{ data.title }}</h5>
+<p mat-dialog-content>{{ data.message }}</p>
+<div mat-dialog-actions class="d-flex justify-content-center gap-2">
+  <button
+    type="button"
+    class="btn btn-secondary"
+    (click)="dialogRef.close(false)"
+  >
+    No
+  </button>
+  <button type="button" class="btn btn-success" (click)="dialogRef.close(true)">
+    Yes
+  </button>
+</div>

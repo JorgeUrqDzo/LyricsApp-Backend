@@ -10,7 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { AppRoutesModule } from './app.routes.module';
-
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,8 +20,18 @@ import { AppRoutesModule } from './app.routes.module';
     CounterComponent,
     FetchDataComponent,
   ],
-  imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutesModule],
-  providers: [{ provide: 'ng-cli-universal', useValue: 'serverApp' }],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    AppRoutesModule,
+    NoopAnimationsModule,
+    MatDialogModule,
+  ],
+  providers: [
+    { provide: 'ng-cli-universal', useValue: 'serverApp' },
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

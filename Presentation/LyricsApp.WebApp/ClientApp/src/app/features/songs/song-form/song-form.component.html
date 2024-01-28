@@ -1,0 +1,41 @@
+<h5 mat-dialog-title>Song form</h5>
+<form action="">
+  <div mat-dialog-content>
+    <div class="mb-3">
+      <label for="songName" class="form-label"> Name </label>
+      <input
+        type="text"
+        id="songName"
+        class="form-control"
+        placeholder="Song name"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="genre" class="form-label"> Genre </label>
+      <select name="genre" id="genre" class="form-control">
+        <option value="">Select genre...</option>
+        @for (item of [1,2,3,4,5]; track $index) {
+        <option value="{{ item }}">Genre {{ item }}</option>
+        }
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="songLyrics" class="form-label"> Lyrics </label>
+      <textarea
+        name="songLyrics"
+        id="songLyrics"
+        cols="30"
+        rows="10"
+        class="form-control"
+        placeholder="Song lyrics"
+      ></textarea>
+    </div>
+  </div>
+  <div mat-dialog-actions class="d-flex justify-content-center gap-2">
+    <button type="button" class="btn btn-secondary" mat-dialog-close>
+      Cancel
+    </button>
+    <button type="submit" class="btn btn-success">Save</button>
+  </div>
+</form>

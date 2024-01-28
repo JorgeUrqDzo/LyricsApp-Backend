@@ -1,5 +1,12 @@
 <h1>Genres</h1>
 
+<div class="d-flex justify-content-end mb-3">
+  <button type="button" class="btn btn-success" (click)="newGenre()">
+    <i class="bi bi-plus-lg"></i>
+    New
+  </button>
+</div>
+
 <table class="table table-hover table-bordered">
   <thead class="">
     <tr>
@@ -22,10 +29,10 @@
           <button type="button" class="btn btn-sm btn-success">
             <i class="bi bi-eye-fill"></i>
           </button>
-          <button type="button" class="btn btn-sm btn-success">
+          <button type="button" class="btn btn-sm btn-success" (click)="editGenre(item)">
             <i class="bi bi-pencil-fill"></i>
           </button>
-          <button type="button" class="btn btn-sm btn-danger">
+          <button type="button" class="btn btn-sm btn-danger" (click)="confirmDelete()">
             <i class="bi bi-trash3-fill"></i>
           </button>
         </div>
