@@ -9,6 +9,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { AppRoutesModule } from './app.routes.module';
 
 @NgModule({
   declarations: [
@@ -16,21 +17,10 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
     NavMenuComponent,
     HomeComponent,
     CounterComponent,
-    FetchDataComponent
+    FetchDataComponent,
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-    ])
-  ],
-  providers: [
-    { provide: 'ng-cli-universal',  useValue: 'serverApp' }
-  ],
-  bootstrap: [AppComponent]
+  imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutesModule],
+  providers: [{ provide: 'ng-cli-universal', useValue: 'serverApp' }],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,0 +1,33 @@
+ [
+  {
+    "name": "Home",
+    "path": "/",
+    "icon": ""
+  },
+  {
+    "name": "Genres",
+    "path": "/genres",
+    "icon": ""
+  },
+  {
+    "name": "Songs",
+    "path": "/songs",
+    "icon": ""
+  },
+  {
+    "name": "Playlists",
+    "path": "/playlists",
+    "icon": ""
+  },
+  {
+    "name": "Counter",
+    "path": "/counter",
+    "icon": ""
+  },
+  {
+    "name": "Fetch Data",
+    "path": "/fetch-data",
+    "icon": ""
+  }
+
+]

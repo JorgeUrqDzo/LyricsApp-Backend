@@ -1,0 +1,29 @@
+@if (data) {
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li
+      class="page-item"
+      [ngClass]="disablePrevPage"
+    >
+      <a class="page-link btn" (click)="prevPage()">Previous</a>
+    </li>
+    @for (item of [].constructor(data.pages) ; track $index) { @if($index + 1 ==
+    data.currentPage){
+    <li class="page-item active">
+      <a class="page-link btn" (click)="changePageEvent($index + 1)">{{
+        $index + 1
+      }}</a>
+    </li>
+    } @else {
+    <li class="page-item">
+      <a class="btn page-link" (click)="changePageEvent($index + 1)">{{
+        $index + 1
+      }}</a>
+    </li>
+    } }
+    <li class="page-item" [ngClass]="disableNextPage">
+      <a class="page-link btn" (click)="nextPage()">Next</a>
+    </li>
+  </ul>
+</nav>
+}

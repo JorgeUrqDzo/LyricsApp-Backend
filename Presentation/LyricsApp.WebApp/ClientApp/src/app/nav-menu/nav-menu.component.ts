@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import menus from './menus.json'
 @Component({
   selector: 'app-nav-menu',
   templateUrl: './nav-menu.component.html',
@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class NavMenuComponent {
   isExpanded = false;
+
+  menuList = menus;
 
   collapse() {
     this.isExpanded = false;
