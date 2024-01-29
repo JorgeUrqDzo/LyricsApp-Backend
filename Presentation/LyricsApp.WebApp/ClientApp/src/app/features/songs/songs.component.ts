@@ -16,8 +16,8 @@ export class SongsComponent {
   pagination: PaginationModel = {
     currentPage: 1,
     pages: 4,
-    pageSize: 100,
-    totalRecords: 400,
+    pageSize: 10,
+    totalRecords: 40,
   };
 
   constructor(private dialog: AppDialogService) {}
@@ -28,7 +28,7 @@ export class SongsComponent {
 
   newSong() {
     this.dialog.showComponent(SongFormComponent, {
-      width: '500px',
+      width: '800px',
       disableClose: true,
     });
   }

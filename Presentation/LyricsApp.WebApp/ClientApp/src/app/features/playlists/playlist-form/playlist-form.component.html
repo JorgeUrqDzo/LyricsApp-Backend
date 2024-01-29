@@ -1,13 +1,21 @@
-<h5 mat-dialog-title>Playlist form</h5>
-<form action="">
-  <div mat-dialog-content>
-    <label for="playlistName" class="form-label">
-      Name
+<div class="card w-full p-10 bg-base-100 shadow-xl">
+  <h3 class="font-bold text-xl mb-5">Playlist form</h3>
+  <form action="">
+    <label class="form-control">
+      <div class="label">
+        <span class="label-text">Name</span>
+      </div>
+      <input
+        type="text"
+        placeholder="Playlist"
+        class="input input-bordered"
+      />
     </label>
-    <input type="text" id="playlistName" class="form-control" placeholder="Playlist name" required />
-  </div>
-  <div mat-dialog-actions class="d-flex justify-content-center gap-2">
-    <button type="button" class="btn btn-secondary" mat-dialog-close>Cancel</button>
-    <button type="submit" class="btn btn-success">Save</button>
-  </div>
-</form>
+    <div class="modal-action">
+      <button type="button" class="btn btn-info text-error" mat-dialog-close>
+        Cancel
+      </button>
+      <button type="submit" class="btn btn-info text-primary">Save</button>
+    </div>
+  </form>
+</div>

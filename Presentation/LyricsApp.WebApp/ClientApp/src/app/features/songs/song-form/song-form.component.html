@@ -1,41 +1,41 @@
-<h5 mat-dialog-title>Song form</h5>
-<form action="">
-  <div mat-dialog-content>
-    <div class="mb-3">
-      <label for="songName" class="form-label"> Name </label>
+<div class="card w-full p-10 bg-base-100 shadow-xl">
+  <h3 class="font-bold text-xl mb-5">Song form</h3>
+  <form action="">
+    <label class="form-control">
+      <div class="label">
+        <span class="label-text">Title</span>
+      </div>
       <input
         type="text"
-        id="songName"
-        class="form-control"
-        placeholder="Song name"
-        required
+        placeholder="Song"
+        class="input input-bordered"
       />
-    </div>
-    <div class="mb-3">
-      <label for="genre" class="form-label"> Genre </label>
-      <select name="genre" id="genre" class="form-control">
-        <option value="">Select genre...</option>
+    </label>
+    <label class="form-control">
+      <div class="label">
+        <span class="label-text">Pick genre</span>
+      </div>
+      <select class="select select-bordered">
+        <option disabled selected>Pick one</option>
         @for (item of [1,2,3,4,5]; track $index) {
         <option value="{{ item }}">Genre {{ item }}</option>
         }
       </select>
-    </div>
-    <div class="mb-3">
-      <label for="songLyrics" class="form-label"> Lyrics </label>
+    </label>
+    <label class="form-control">
+      <div class="label">
+        <span class="label-text">Lyrics</span>
+      </div>
       <textarea
-        name="songLyrics"
-        id="songLyrics"
-        cols="30"
-        rows="10"
-        class="form-control"
-        placeholder="Song lyrics"
+        class="textarea textarea-bordered textarea-lg form-control h-64"
+        placeholder="Lyrics"
       ></textarea>
+    </label>
+    <div class="modal-action">
+      <button type="button" class="btn btn-info text-error" mat-dialog-close>
+        Cancel
+      </button>
+      <button type="submit" class="btn btn-info text-primary">Save</button>
     </div>
-  </div>
-  <div mat-dialog-actions class="d-flex justify-content-center gap-2">
-    <button type="button" class="btn btn-secondary" mat-dialog-close>
-      Cancel
-    </button>
-    <button type="submit" class="btn btn-success">Save</button>
-  </div>
-</form>
+  </form>
+</div>

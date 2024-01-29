@@ -1,10 +1,12 @@
-<h1>Songs</h1>
-<div class="d-flex justify-content-end mb-3">
+<h1 class="text-3xl font-bold">Songs</h1>
+
+<div class="flex justify-end mb-3">
   <button type="button" class="btn btn-success" (click)="newSong()">
     <i class="bi bi-plus-lg"></i>
     New
   </button>
 </div>
+<!--
 <table class="table table-hover table-bordered">
   <thead class="">
     <tr>
@@ -51,6 +53,65 @@
     </tr>
     }
   </tbody>
-</table>
+</table> -->
 
-<app-pagination [data]="pagination" (changePage)="changePageEvent($event)"></app-pagination>
+<div class="overflow-x-auto">
+  <table class="table table-lg table-zebra">
+    <thead class="bg-base-100 text-primary">
+      <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Genre</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of [1,2,3,4,5,6,7,8,9,10]; track $index) {
+      <tr class="">
+        <th class="w-2">{{ item }}</th>
+        <td class="w-auto">
+          <div class="flex justify-start gap-3">
+            @if($index % 2 > 0) {
+            <button type="button" class="btn btn-sm btn-default">
+              <i class="bi bi-heart-fill text-success"></i>
+            </button>
+            } @else{
+            <button type="button" class="btn btn-sm btn-default">
+              <i class="bi bi-heart"></i>
+            </button>
+            }
+            <span>Song {{ item }}</span>
+          </div>
+        </td>
+        <td class="w-0">
+          <div class="flex justify-stretch gap-3">
+            <span class="badge badge-primary badge-outline w-20">
+              Genre {{ item }}
+            </span>
+
+          </div>
+        </td>
+        <td class="w-0">
+          <div class="flex justify-stretch gap-3">
+            <button type="button" class="btn btn-sm btn-info">
+              <span class="bi bi-eye-fill"></span>
+            </button>
+            <button type="button" class="btn btn-sm btn-info">
+              <i class="bi bi-pencil-fill"></i>
+            </button>
+            <button type="button" class="btn btn-sm btn-info text-error">
+              <i class="bi bi-trash3-fill"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<app-pagination
+  class="flex justify-center mt-5"
+  [data]="pagination"
+  (changePage)="changePageEvent($event)"
+></app-pagination>

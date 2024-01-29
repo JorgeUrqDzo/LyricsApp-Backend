@@ -27,7 +27,7 @@ export class PlaylistsComponent {
 
   newPlaylist() {
     this.dialog.showComponent(PlaylistFormComponent, {
-      width: '380px',
+      width: '500px',
       disableClose: true,
     });
   }

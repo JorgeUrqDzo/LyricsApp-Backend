@@ -1,14 +1,22 @@
-<h5 mat-dialog-title  class="mt-2">{{ data.title }}</h5>
-<p mat-dialog-content>{{ data.message }}</p>
-<div mat-dialog-actions class="d-flex justify-content-center gap-2">
-  <button
-    type="button"
-    class="btn btn-secondary"
-    (click)="dialogRef.close(false)"
-  >
-    No
-  </button>
-  <button type="button" class="btn btn-success" (click)="dialogRef.close(true)">
-    Yes
-  </button>
+<div class="modal-open" role="dialog">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">{{ data.title }}</h3>
+    <p class="py-4">{{ data.message }}</p>
+    <div class="modal-action">
+      <button
+        type="button"
+        class="btn btn-info " [ngClass]="cancelColor"
+        (click)="dialogRef.close(false)"
+      >
+        No
+      </button>
+      <button
+        type="button"
+        class="btn btn-info" [ngClass]="okColor"
+        (click)="dialogRef.close(true)"
+      >
+        Yes
+      </button>
+    </div>
+  </div>
 </div>

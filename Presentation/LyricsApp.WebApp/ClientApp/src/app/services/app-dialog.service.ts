@@ -10,6 +10,7 @@ interface DialogOptions {
   width?: string;
   disableClose?: boolean;
   data?: any;
+  panelClass?: string;
 }
 
 @Injectable({
@@ -23,6 +24,7 @@ export class AppDialogService {
     dialogRef = this.dialog.open(AppDialogComponent, {
       width: '380px',
       disableClose: true,
+      panelClass: 'dialog-panel',
       data: { title, message },
     });
 
@@ -33,6 +35,16 @@ export class AppDialogService {
     component: ComponentType<T>,
     options?: DialogOptions
   ) {
+    if (options) {
+      options.panelClass = 'dialog-panel';
+    } else {
+      options = {
+        width: '380px',
+        disableClose: true,
+        panelClass: 'dialog-panel',
+      };
+    }
+
     return this.dialog.open(component, options).afterClosed();
   }
 
@@ -41,7 +53,20 @@ export class AppDialogService {
     dialogRef = this.dialog.open(AppConfirmDialogComponent, {
       width: '380px',
       disableClose: true,
+      panelClass: 'dialog-panel',
       data: { title, message },
+    });
+    return dialogRef.afterClosed();
+  }
+
+  public confirmDelete(title: string, message: string): Observable<boolean> {
+    let dialogRef: MatDialogRef<AppConfirmDialogComponent>;
+    dialogRef = this.dialog.open(AppConfirmDialogComponent, {
+      width: '380px',
+      disableClose: true,
+      panelClass: 'dialog-panel',
+      backdropClass: 'dialog-backdrop',
+      data: { title, message, confirmDelete: true },
     });
     return dialogRef.afterClosed();
   }

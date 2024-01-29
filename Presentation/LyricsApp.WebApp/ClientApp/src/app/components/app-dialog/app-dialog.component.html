@@ -1,5 +1,9 @@
-<h5 mat-dialog-title class="mt-2">{{ data.title }}</h5>
-<div mat-dialog-content style="white-space: pre-line">{{ data.message }}</div>
-<div mat-dialog-actions class="d-flex justify-content-center gap-2">
-  <button type="button" class="btn btn-success" mat-dialog-close>OK</button>
+<div class="modal-open" role="dialog">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">{{ data.title }}</h3>
+    <p class="py-4">{{ data.message }}</p>
+    <div class="modal-action">
+      <button type="button" class="btn btn-info text-primary" mat-dialog-close>Ok</button>
+    </div>
+  </div>
 </div>

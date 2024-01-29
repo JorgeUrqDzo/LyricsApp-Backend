@@ -23,7 +23,7 @@ export class GenresComponent {
 
   confirmDelete() {
     this.dialog
-      .confirm('Delete Genre', 'Are you sure you want to delete this genre?')
+      .confirmDelete('Delete Genre', 'Are you sure you want to delete this genre?',)
       .subscribe((res) => {
         if (res) {
           this.dialog.show('Delete Genre', 'Genre successfully deleted.');
@@ -32,14 +32,14 @@ export class GenresComponent {
   }
   newGenre() {
     this.dialog.showComponent(GenreFormComponent, {
-      width: '380px',
+      width: '500px',
       disableClose: true,
     });
   }
 
   editGenre(genre: any) {
     this.dialog.showComponent(GenreFormComponent, {
-      width: '380px',
+      width: '500px',
       disableClose: true,
       data: {},
     });
