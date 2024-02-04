@@ -12,20 +12,20 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LyricsApp.WebApp.Controllers;
 
-[AllowAnonymous]
+
 public class AuthController : LyricsAppController
 {
     public AuthController(IMediator mediator) : base(mediator)
     {
     }
 
-    [Authorize]
     [HttpGet]
     public IActionResult IsLoggedIn()
     {
         return Ok(true);
     }
 
+    [AllowAnonymous]
     [HttpPost("LoginWithGoogle")]
     public async Task<IActionResult> LoginWithGoogle(GoogleSignInCommand command)
     {
@@ -50,6 +50,7 @@ public class AuthController : LyricsAppController
         }
     }
 
+    [AllowAnonymous]
     [HttpPost("LoginWithEmailAndPassword")]
     public async Task<IActionResult> LoginWithEmailAndPassword(EmailPasswordSignInCommand command)
     {
@@ -76,7 +77,7 @@ public class AuthController : LyricsAppController
         }
     }
 
-
+    [AllowAnonymous]
     [HttpPost("Register")]
     public async Task<IActionResult> Register(RegisterCommand command)
     {

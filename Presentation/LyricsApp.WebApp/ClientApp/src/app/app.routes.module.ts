@@ -7,18 +7,31 @@ import { BrowserModule } from '@angular/platform-browser';
 import { SongsComponent } from './features/songs/songs.component';
 import { PlaylistsComponent } from './features/playlists/playlists.component';
 import { GenresComponent } from './features/genres/genres.component';
+import { LoginComponent } from './security/login/login.component';
+import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' },
-  { path: 'counter', component: CounterComponent },
-  { path: 'fetch-data', component: FetchDataComponent },
-  { path: 'songs', component: SongsComponent },
-  { path: 'playlists', component: PlaylistsComponent },
-  { path: 'genres', component: GenresComponent },
+  {
+    path: '',
+    component: MainLayoutComponent,
+    children: [
+      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'home', component: HomeComponent },
+      { path: 'counter', component: CounterComponent },
+      { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'songs', component: SongsComponent },
+      { path: 'playlists', component: PlaylistsComponent },
+      { path: 'genres', component: GenresComponent },
+    ],
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
 ];
 
 @NgModule({
   imports: [BrowserModule, RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutesModule {}

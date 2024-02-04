@@ -4,6 +4,8 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AppDialogComponent } from '../components/app-dialog/app-dialog.component';
 import { AppConfirmDialogComponent } from '../components/app-confirm-dialog/app-confirm-dialog.component';
 import { Observable } from 'rxjs';
+import { AppLoadingComponent } from '../components/app-loading/app-loading.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 interface DialogOptions {
   height?: string;
@@ -17,7 +19,9 @@ interface DialogOptions {
   providedIn: 'root',
 })
 export class AppDialogService {
-  constructor(private dialog: MatDialog) {}
+  private _loading?: MatDialogRef<AppLoadingComponent>;
+
+  constructor(private dialog: MatDialog, private spinner: NgxSpinnerService) {}
 
   public show(title: string, message: string) {
     let dialogRef: MatDialogRef<AppDialogComponent>;
@@ -69,5 +73,28 @@ export class AppDialogService {
       data: { title, message, confirmDelete: true },
     });
     return dialogRef.afterClosed();
+  }
+
+  public loadingShow(message?: string): MatDialogRef<AppLoadingComponent> {
+    let dialogRef: MatDialogRef<AppLoadingComponent>;
+    this.spinner.show();
+    dialogRef = this.dialog.open(AppLoadingComponent, {
+      width: '380px',
+      disableClose: true,
+      panelClass: 'dialog-panel',
+      data: { message },
+    });
+    dialogRef.afterClosed().subscribe((_) => {
+      this.spinner.hide();
+    });
+    this._loading = dialogRef;
+    return dialogRef;
+  }
+
+  public loadingHide() {
+    if (this._loading) {
+      this._loading.close();
+      this._loading = undefined;
+    }
   }
 }

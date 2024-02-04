@@ -12,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpClient();
 
 builder.Services.AddControllersWithViews();
+// builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
@@ -70,21 +71,20 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
+app.UseCors("Open");
 
 app.UseStaticFiles();
-app.UseRouting();
+// app.UseRouting();
 
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller}/{action=Index}/{id?}");
-
-app.MapFallbackToFile("index.html");
-
-app.UseCors("Open");
 app.UseAuthentication();
 app.UseAuthorization();
 
+// app.MapControllerRoute(
+//     name: "default",
+//     pattern: "{controller}/{action=Index}/{id?}"
+// );
+
+// app.MapFallbackToFile("index.html");
 app.MapControllers();
 app.UseMiddleware<ExceptionMiddleware>();
 
