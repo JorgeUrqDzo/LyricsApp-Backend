@@ -9,11 +9,15 @@ import { PlaylistsComponent } from './features/playlists/playlists.component';
 import { GenresComponent } from './features/genres/genres.component';
 import { LoginComponent } from './security/login/login.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+import { authGuard } from './services/auth.guard';
+import { LogoutComponent } from './security/logout/logout.component';
 
 export const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
+    canActivate: [authGuard],
+    canActivateChild: [authGuard],
     children: [
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
@@ -28,6 +32,7 @@ export const routes: Routes = [
     path: 'login',
     component: LoginComponent,
   },
+  { path: 'logout', canActivate: [authGuard], component: LogoutComponent },
 ];
 
 @NgModule({

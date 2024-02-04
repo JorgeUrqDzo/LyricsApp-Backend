@@ -87,7 +87,16 @@
       </ul>
     </div>
     <div class="navbar-end">
-      <a class="btn btn-outline btn-primary btn-sm">Login</a>
+      @if (isAuth) {
+      <span class="font-bold mr-3">{{ displayName | titlecase }}</span>
+      <a class="btn btn-info text-accent btn-sm" [routerLink]="['/logout']"
+        >Sign out</a
+      >
+      }@else {
+      <a class="btn btn-info text-primary btn-sm" [routerLink]="['/login']"
+        >Login</a
+      >
+      }
     </div>
   </div>
 </header>

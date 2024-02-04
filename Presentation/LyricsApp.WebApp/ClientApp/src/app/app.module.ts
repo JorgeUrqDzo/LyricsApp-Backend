@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -12,6 +12,7 @@ import { AppRoutesModule } from './app.routes.module';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material/dialog';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { JwtInterceptor} from './services/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,11 @@ import { NgxSpinnerModule } from 'ngx-spinner';
   providers: [
     { provide: 'ng-cli-universal', useValue: 'serverApp' },
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent],
 })

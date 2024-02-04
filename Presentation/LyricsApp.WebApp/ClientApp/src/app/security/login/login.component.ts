@@ -28,7 +28,9 @@ export class LoginComponent {
   constructor(
     private _service: SecurityService,
     private _dialog: AppDialogService
-  ) {}
+  ) {
+    console.log('_service.getIsAuth() :>> ', _service.getIsAuth());
+  }
 
   doLogin() {
     this.submitted = true;
