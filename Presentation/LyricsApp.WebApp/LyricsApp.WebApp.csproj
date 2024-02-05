@@ -10,9 +10,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>27867699-efce-4129-8c5b-3bbc4441b99f</UserSecretsId>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
-
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="7.0.15" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
@@ -64,8 +61,8 @@
 
     <!-- Include the newly-built files in the publish output -->
     <ItemGroup>
-      <DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
-      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+      <DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**; $(SpaRoot)server\web.config" />
+      <ResolvedFileToPublish Include="@(DistFiles-&gt;'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
         <RelativePath>wwwroot\%(RecursiveDir)%(FileName)%(Extension)</RelativePath>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
