@@ -8,7 +8,6 @@ namespace LyricsApp.WebApp.Base
 {
     [ApiController]
     [Route("Api/[controller]")]
-    [Produces("application/json")]
     [Authorize]
     public class LyricsAppController : ControllerBase
     {
