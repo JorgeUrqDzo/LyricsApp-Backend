@@ -7,18 +7,8 @@ const target = env.ASPNETCORE_HTTPS_PORT
   : "http://localhost:11064";
 
 const PROXY_CONFIG = [
-  // {
-  //   "/api/**": {
-  //     target: target,
-  //     secure: false,
-  //     proxyTimeout: 10000,
-  //     headers: {
-  //       Connection: "Keep-Alive",
-  //     },
-  //   },
-  // },
   {
-    context: ["/api", "/weatherforecast"],
+    context: ["/api", "/weatherforecast", "/swagger"],
     proxyTimeout: 10000,
     target: target,
     secure: false,

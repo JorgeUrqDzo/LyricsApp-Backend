@@ -70,22 +70,23 @@ if (!app.Environment.IsDevelopment())
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseHttpsRedirection();
 app.UseCors("Open");
 
+app.UseHttpsRedirection();
+app.UseDefaultFiles();
 app.UseStaticFiles();
-// app.UseRouting();
+app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
 // app.MapControllerRoute(
 //     name: "default",
-//     pattern: "{controller}/{action=Index}/{id?}"
+//     pattern: "api/{controller}/{action=Index}/{id?}"
 // );
-
 // app.MapFallbackToFile("index.html");
 app.MapControllers();
+
 app.UseMiddleware<ExceptionMiddleware>();
 
 app.Run();
