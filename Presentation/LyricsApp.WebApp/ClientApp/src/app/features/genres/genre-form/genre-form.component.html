@@ -1,16 +1,22 @@
 <div class="card w-full p-10 bg-base-100 shadow-xl">
   <h3 class="font-bold text-xl mb-5">Genre form</h3>
-  <form action="">
-    <label class="form-control">
-      <div class="label">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+
+    <div class="form-control">
+      <label class="label">
         <span class="label-text">Name</span>
-      </div>
+        @if( f.name.dirty&&
+        f.name.errors?.required){
+        <span class="label-text text-error">*Required</span>
+        }
+      </label>
       <input
         type="text"
         placeholder="Genre"
         class="input input-bordered"
+        formControlName="name"
       />
-    </label>
+    </div>
     <div class="modal-action">
       <button type="button" class="btn btn-info text-error" mat-dialog-close>
         Cancel
