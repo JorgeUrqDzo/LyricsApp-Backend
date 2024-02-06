@@ -33,7 +33,7 @@ export class GenreFormComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<GenreFormComponent>
   ) {
-    if (data['genre']) {
+    if (data && data['genre']) {
       this.form.patchValue(data['genre']);
     }
   }
