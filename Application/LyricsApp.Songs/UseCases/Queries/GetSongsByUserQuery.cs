@@ -47,7 +47,8 @@ namespace LyricsApp.Songs.UseCases.Queries
                         x.Id, 
                         x.Title, 
                         x.Lyric, 
-                        x.Genre != null ? new GenreDto(x.Genre.Id, x.Genre.Name) : null
+                        x.Genre != null ? new GenreDto(x.Genre.Id, x.Genre.Name) : null,
+                        x.IsFavorite
                     )
                 ).ToList()
             );

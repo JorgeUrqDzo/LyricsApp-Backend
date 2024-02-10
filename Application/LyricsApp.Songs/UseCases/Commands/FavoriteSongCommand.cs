@@ -1,5 +1,6 @@
 ﻿using LyricsApp.Auth.Services;
 using LyricsApp.Core.Entities.Data;
+using LyricsApp.Core.Entities.Entities;
 using LyricsApp.Core.Entities.Exceptions;
 using LyricsApp.Songs.DTOs;
 using LyricsApp.Songs.Repositories;
@@ -8,28 +9,26 @@ using MediatR;
 
 namespace LyricsApp.Songs.UseCases.Commands
 {
-    public class UpdateSongCommand : IRequest<SongDto>
+    public class FavoriteSongCommand : IRequest<SongDto>
     {
         public required Guid Id { get; init; }
-        public required string Title { get; init; }
-        public required string Lyric { get; init; }
-        public Guid? GenreId { get; init; } = null;
+        public required bool IsFavorite { get; init; }
     }
 
-    public class UpdateSongCommandHandler : IRequestHandler<UpdateSongCommand, SongDto>
+    public class FavoriteSongCommandHandler : IRequestHandler<FavoriteSongCommand, SongDto>
     {
         private readonly ISongRepository songRepository;
         private readonly IUnitOfWork unitOfWork;
         private readonly IAppContext _appContext;
 
-        public UpdateSongCommandHandler(ISongRepository songRepository, IUnitOfWork unitOfWork, IAppContext appContext)
+        public FavoriteSongCommandHandler(ISongRepository songRepository, IUnitOfWork unitOfWork, IAppContext appContext)
         {
             this.songRepository = songRepository;
             this.unitOfWork = unitOfWork;
             _appContext = appContext;
         }
 
-        public async Task<SongDto> Handle(UpdateSongCommand request, CancellationToken cancellationToken)
+        public async Task<SongDto> Handle(FavoriteSongCommand request, CancellationToken cancellationToken)
         {
             var currentSong = await songRepository.GetSongByIdAsync(request.Id, _appContext.GetUserId());
 
@@ -38,10 +37,7 @@ namespace LyricsApp.Songs.UseCases.Commands
                 throw new NotFoundException($"Not found resource: {request.Id}");
             }
 
-            currentSong.Update(request.Title, request.Lyric);
-            currentSong.UpdateGenre(request.GenreId);
-
-            songRepository.Update(currentSong);
+            currentSong.SetAsFavorite(request.IsFavorite);
 
             await unitOfWork.SaveChangesAsync(cancellationToken);
 

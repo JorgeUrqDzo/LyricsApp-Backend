@@ -22,13 +22,16 @@ namespace LyricsApp.Core.Entities.Entities
             Lyric = lyric;
             OwnerId = ownerId;
             GenreId = genreId;
+            IsFavorite = false;
         }
 
         public Guid Id { get; private set; }
         public string Title { get; private set; }
         public string Lyric { get; private set; }
         public Guid OwnerId { get; private set; }
-        public Guid? GenreId { get; set; }
+        public Guid? GenreId { get; private set; }
+
+        public bool IsFavorite { get; set; }
 
         public Genre? Genre { get; set; }
 
@@ -48,6 +51,11 @@ namespace LyricsApp.Core.Entities.Entities
         public void UpdateGenre(Guid? genreId)
         {
             GenreId = genreId;
+        }
+
+        public void SetAsFavorite(bool isFavorite = true)
+        {
+            IsFavorite = isFavorite;
         }
     }
 }

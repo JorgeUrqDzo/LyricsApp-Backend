@@ -65,6 +65,17 @@ namespace LyricsApp.WebApp.Controllers
             return Ok(new ApiSuccess<SongDto>(createdSong));
         }
 
+        // POST: api/Songs/{id}/favorite
+        [HttpPost("{id}/Favorite")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ApiSuccess<SongDto>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ApiError))]
+        public async Task<IActionResult> SetFavorite([FromBody] FavoriteSongCommand command)
+        {
+            var song = await mediator.Send(command);
+
+            return Ok(new ApiSuccess<SongDto>(song));
+        }
+
         // PUT: api/Songs/5
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ApiSuccess<SongDto>))]

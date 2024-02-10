@@ -1,36 +1,43 @@
 <div class="card w-full p-10 bg-base-100 shadow-xl">
   <h3 class="font-bold text-xl mb-5">Song form</h3>
-  <form action="">
-    <label class="form-control">
-      <div class="label">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-control">
+      <label class="label">
         <span class="label-text">Title</span>
-      </div>
+        @if( f.title.dirty&& f.title.errors?.required){
+        <span class="label-text text-error">*Required</span>
+        }
+      </label>
       <input
         type="text"
-        placeholder="Song"
+        placeholder="Song Title..."
         class="input input-bordered"
+        formControlName="title"
       />
-    </label>
-    <label class="form-control">
-      <div class="label">
-        <span class="label-text">Pick genre</span>
-      </div>
-      <select class="select select-bordered">
-        <option disabled selected>Pick one</option>
-        @for (item of [1,2,3,4,5]; track $index) {
-        <option value="{{ item }}">Genre {{ item }}</option>
+    </div>
+
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text">Pick a genre</span>
+      </label>
+      <select class="select select-bordered" formControlName="genreId">
+        <option disabled selected value="">Pick one</option>
+        @for (item of genres; track $index) {
+        <option value="{{ item.id }}">{{ item.name }}</option>
         }
       </select>
-    </label>
-    <label class="form-control">
-      <div class="label">
+    </div>
+
+    <div class="form-control">
+      <label class="label">
         <span class="label-text">Lyrics</span>
-      </div>
+      </label>
       <textarea
         class="textarea textarea-bordered textarea-lg form-control h-64"
-        placeholder="Lyrics"
+        placeholder="Song Lyrics..."
+        formControlName="lyric"
       ></textarea>
-    </label>
+    </div>
     <div class="modal-action">
       <button type="button" class="btn btn-info text-error" mat-dialog-close>
         Cancel

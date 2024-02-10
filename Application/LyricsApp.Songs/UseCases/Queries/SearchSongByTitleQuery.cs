@@ -28,7 +28,8 @@ public class SearchSongByTitleQueryHandler : IRequestHandler<SearchSongByTitleQu
             new SearchSongsDto(
                 x.Id, 
                 x.Title, 
-                x.Genre != null ? new GenreDto(x.Genre.Id, x.Genre.Name) : null
+                x.Genre != null ? new GenreDto(x.Genre.Id, x.Genre.Name) : null,
+                x.IsFavorite
             )
         );
 

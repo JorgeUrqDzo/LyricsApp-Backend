@@ -39,7 +39,8 @@ namespace LyricsApp.Songs.UseCases.Queries
                 song.Id, 
                 song.Title, 
                 song.Lyric,
-                song.Genre != null ? new GenreDto(song.Genre.Id, song.Genre.Name) : null
+                song.Genre != null ? new GenreDto(song.Genre.Id, song.Genre.Name) : null,
+                song.IsFavorite
             );
         }
     }

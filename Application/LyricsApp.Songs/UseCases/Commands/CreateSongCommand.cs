@@ -40,7 +40,8 @@ namespace LyricsApp.Songs.UseCases.Commands
                 newSong.Id, 
                 newSong.Title, 
                 newSong.Lyric,
-                newSong.Genre != null ? new GenreDto(newSong.Genre.Id, newSong.Genre.Name) : null
+                newSong.Genre != null ? new GenreDto(newSong.Genre.Id, newSong.Genre.Name) : null,
+                newSong.IsFavorite
             );
         }
     }

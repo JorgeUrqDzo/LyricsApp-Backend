@@ -61,45 +61,71 @@
       <tr>
         <th>#</th>
         <th>Title</th>
-        <th>Genre</th>
+        <th class="w-64">Genre</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-      @for (item of [1,2,3,4,5,6,7,8,9,10]; track $index) {
+      @for (item of songs; track $index) {
       <tr class="">
-        <th class="w-2">{{ item }}</th>
+        <th class="w-2">{{ $index + 1 }}</th>
         <td class="w-auto">
           <div class="flex justify-start gap-3">
-            @if($index % 2 > 0) {
-            <button type="button" class="btn btn-sm btn-default">
+            @if(item.isFavorite) {
+            <button
+              type="button"
+              class="btn btn-sm btn-default"
+              (click)="setFavorite(item.id!, false)"
+            >
+              @if(loadingFavorite == item.id){
+              <span class="loading loading-dots loading-sm text-primary"></span>
+              }@else{
               <i class="bi bi-heart-fill text-success"></i>
+              }
             </button>
             } @else{
-            <button type="button" class="btn btn-sm btn-default">
+            <button
+              type="button"
+              class="btn btn-sm btn-default"
+              (click)="setFavorite(item.id!, true)"
+            >
+              @if(loadingFavorite == item.id){
+              <span class="loading loading-dots loading-sm text-primary"></span>
+              }@else{
               <i class="bi bi-heart"></i>
+              }
             </button>
             }
-            <span>Song {{ item }}</span>
+            <span>{{ item.title }}</span>
           </div>
         </td>
-        <td class="w-0">
-          <div class="flex justify-stretch gap-3">
-            <span class="badge badge-primary badge-outline w-20">
-              Genre {{ item }}
+        <td class="">
+          <div class="flex justify-start gap-3">
+            @if(item.genre){
+            <span class="badge badge-primary badge-outline w-auto">
+              {{ item.genre.name }}
             </span>
-
+            }
           </div>
         </td>
+
         <td class="w-0">
           <div class="flex justify-stretch gap-3">
             <button type="button" class="btn btn-sm btn-info">
               <span class="bi bi-eye-fill"></span>
             </button>
-            <button type="button" class="btn btn-sm btn-info">
+            <button
+              type="button"
+              class="btn btn-sm btn-info"
+              (click)="editSong(item)"
+            >
               <i class="bi bi-pencil-fill"></i>
             </button>
-            <button type="button" class="btn btn-sm btn-info text-error">
+            <button
+              type="button"
+              class="btn btn-sm btn-info text-error"
+              (click)="confirmDelete(item)"
+            >
               <i class="bi bi-trash3-fill"></i>
             </button>
           </div>
