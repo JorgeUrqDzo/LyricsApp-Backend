@@ -30,7 +30,7 @@ export class SongFormComponent implements OnInit {
     id: [''],
     title: ['', Validators.required],
     lyric: [''],
-    genreId: [''],
+    genreId: [null],
   });
 
   get f() {

@@ -21,7 +21,7 @@
         <span class="label-text">Pick a genre</span>
       </label>
       <select class="select select-bordered" formControlName="genreId">
-        <option disabled selected value="">Pick one</option>
+        <option disabled selected value="null">Pick one</option>
         @for (item of genres; track $index) {
         <option value="{{ item.id }}">{{ item.name }}</option>
         }
