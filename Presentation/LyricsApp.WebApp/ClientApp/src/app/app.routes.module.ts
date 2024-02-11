@@ -11,6 +11,8 @@ import { LoginComponent } from './security/login/login.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { authGuard } from './services/auth.guard';
 import { LogoutComponent } from './security/logout/logout.component';
+import { SongFormComponent } from './features/songs/song-form/song-form.component';
+import { SongViewComponent } from './features/songs/song-view/song-view.component';
 
 export const routes: Routes = [
   {
@@ -23,6 +25,8 @@ export const routes: Routes = [
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'songs', component: SongsComponent },
+      { path: 'songs/form', component: SongFormComponent },
+      { path: 'songs/view/:id', component: SongViewComponent },
       { path: 'playlists', component: PlaylistsComponent },
       { path: 'genres', component: GenresComponent },
     ],

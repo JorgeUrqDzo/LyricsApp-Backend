@@ -1,48 +1,53 @@
-<div class="card w-full p-10 bg-base-100 shadow-xl">
-  <h3 class="font-bold text-xl mb-5">Song form</h3>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="form-control">
-      <label class="label">
-        <span class="label-text">Title</span>
-        @if( f.title.dirty&& f.title.errors?.required){
-        <span class="label-text text-error">*Required</span>
-        }
-      </label>
-      <input
-        type="text"
-        placeholder="Song Title..."
-        class="input input-bordered"
-        formControlName="title"
-      />
-    </div>
+<h1 class="font-bold text-3xl mb-5">{{ title }} Song</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-control">
+    <label class="label">
+      <span class="label-text">Title</span>
+      @if( (submitted || f.title.dirty) && f.title.errors?.required){
+      <span class="label-text text-error">*Required</span>
+      }
+    </label>
+    <input
+      type="text"
+      placeholder="Song Title..."
+      [spellcheck]="false"
+      class="input input-bordered"
+      formControlName="title"
+    />
+  </div>
 
-    <div class="form-control">
-      <label class="label">
-        <span class="label-text">Pick a genre</span>
-      </label>
-      <select class="select select-bordered" formControlName="genreId">
-        <option disabled selected value="null">Pick one</option>
-        @for (item of genres; track $index) {
-        <option value="{{ item.id }}">{{ item.name }}</option>
-        }
-      </select>
-    </div>
+  <div class="form-control">
+    <label class="label">
+      <span class="label-text">Pick a genre</span>
+    </label>
+    <select class="select select-bordered" formControlName="genreId">
+      <option disabled selected value="">Pick one</option>
+      @for (item of genres; track $index) {
+      <option value="{{ item.id }}">{{ item.name }}</option>
+      }
+    </select>
+  </div>
 
-    <div class="form-control">
-      <label class="label">
-        <span class="label-text">Lyrics</span>
-      </label>
-      <textarea
-        class="textarea textarea-bordered textarea-lg form-control h-64"
-        placeholder="Song Lyrics..."
-        formControlName="lyric"
-      ></textarea>
-    </div>
-    <div class="modal-action">
-      <button type="button" class="btn btn-info text-error" mat-dialog-close>
-        Cancel
-      </button>
-      <button type="submit" class="btn btn-info text-primary">Save</button>
-    </div>
-  </form>
-</div>
+  <div class="form-control">
+    <label class="label">
+      <span class="label-text">Lyrics</span>
+    </label>
+    <textarea
+      class="textarea textarea-bordered textarea-lg form-control"
+      [spellcheck]="false"
+      rows="18"
+      placeholder="Song Lyrics..."
+      formControlName="lyric"
+    ></textarea>
+  </div>
+  <div class="modal-action">
+    <button
+      type="button"
+      class="btn btn-info text-error"
+      [routerLink]="['/songs']"
+    >
+      Cancel
+    </button>
+    <button type="submit" class="btn btn-info text-primary">Save</button>
+  </div>
+</form>

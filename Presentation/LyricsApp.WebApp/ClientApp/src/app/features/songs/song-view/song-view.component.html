@@ -1,0 +1,25 @@
+<div class="min-h-screen bg-base-200">
+  <div class="row p-5">
+    <button
+      type="button"
+      class="btn btn-info text-primary btn-sm"
+      [routerLink]="['/songs']"
+    >
+      <i class="bi bi-arrow-left"></i>
+      Back
+    </button>
+  </div>
+  <div class="pt-16">
+    <div class="text-center mb-14">
+      <h1 class="text-5xl mb-2">
+        <strong class="font-bold">{{ song.title }}</strong>
+      </h1>
+      <span class="badge badge-primary badge-outline w-auto">
+        {{ song.genre?.name }}
+      </span>
+    </div>
+    <p class="text-center text-xl pb-10" style="white-space: pre-line">
+      {{ song.lyric }}
+    </p>
+  </div>
+</div>
