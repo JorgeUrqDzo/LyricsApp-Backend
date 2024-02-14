@@ -41,7 +41,7 @@ namespace LyricsApp.Infrastructure.EFCore.DataContext.Repositories
              x.Id == id && x.OwnerId == ownerId);
         }
 
-        public PagedResult<Song> GetSongsByUserAsync(Guid userId, string query, int page, OrderDirectionEnum order)
+        public async Task<PagedResult<Song>> GetSongsByUserAsync(Guid userId, string query, int page, OrderDirectionEnum order)
         {
 
             var songs = context.Songs
@@ -55,7 +55,7 @@ namespace LyricsApp.Infrastructure.EFCore.DataContext.Repositories
 
             songs = order == OrderDirectionEnum.ASC ? songs.OrderBy(x => x.Title) : songs.OrderByDescending(x => x.Title);
 
-            return songs.GetPaged(page, context.PAGE_SIZE);
+            return await songs.GetPaged(page, context.PAGE_SIZE);
         }
 
         public async Task<ICollection<Song>> SearchSongsByTitle(string query, Guid ownerId)

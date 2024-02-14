@@ -1,10 +1,12 @@
 ﻿using LyricsApp.Core.Entities;
 
+using Microsoft.EntityFrameworkCore;
+
 namespace LyricsApp.Infrastructure.EFCore.DataContext.Extensions
 {
     public static class Pagination
     {
-        public static PagedResult<T> GetPaged<T>(this IQueryable<T> query,
+        public static async Task<PagedResult<T>> GetPaged<T>(this IQueryable<T> query,
                                                  int page,
                                                  int pageSize) where T : class
         {
@@ -12,7 +14,7 @@ namespace LyricsApp.Infrastructure.EFCore.DataContext.Extensions
             {
                 CurrentPage = page,
                 PageSize = pageSize,
-                TotalRecords = query.Count()
+                TotalRecords = await query.CountAsync()
             };
 
 
@@ -20,7 +22,10 @@ namespace LyricsApp.Infrastructure.EFCore.DataContext.Extensions
             result.Pages = (int)Math.Ceiling(pageCount);
 
             var skip = (page - 1) * pageSize;
-            result.Results = query.Skip(skip).Take(pageSize).ToList();
+            result.Results = await query
+                .Skip(skip)
+                .Take(pageSize)
+                .ToListAsync();
 
             return result;
         }

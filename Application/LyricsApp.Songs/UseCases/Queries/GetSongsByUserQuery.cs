@@ -36,10 +36,10 @@ namespace LyricsApp.Songs.UseCases.Queries
 
         }
 
-        public Task<PagedResult<SongDto>> Handle(GetSongsByUserQuery request, CancellationToken cancellationToken)
+        public async Task<PagedResult<SongDto>> Handle(GetSongsByUserQuery request, CancellationToken cancellationToken)
         {
             var userId = _appContext.GetUserId();
-            var songsPaged = songRepository.GetSongsByUserAsync(userId, request.Query, request.Page, request.Order);
+            var songsPaged = await songRepository.GetSongsByUserAsync(userId, request.Query, request.Page, request.Order);
             var songsDtoPaged = new PagedResult<SongDto>(
                 songsPaged,
                 songsPaged.Results.Select(x =>
@@ -53,7 +53,7 @@ namespace LyricsApp.Songs.UseCases.Queries
                 ).ToList()
             );
 
-            return Task.FromResult(songsDtoPaged);
+            return songsDtoPaged;
         }
     }
 }
