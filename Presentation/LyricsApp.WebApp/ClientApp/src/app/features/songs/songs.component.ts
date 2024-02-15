@@ -6,11 +6,12 @@ import { AppDialogService } from 'src/app/services/app-dialog.service';
 import { SongsService } from 'src/app/services/songs.service';
 import { SongModel } from 'src/app/models/Song';
 import { RouterModule } from '@angular/router';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-songs',
   standalone: true,
-  imports: [CommonModule, PaginationComponent, RouterModule],
+  imports: [CommonModule, PaginationComponent, RouterModule, ReactiveFormsModule],
   templateUrl: './songs.component.html',
   styleUrl: './songs.component.css',
 })
@@ -23,6 +24,14 @@ export class SongsComponent implements OnInit {
   };
   songs: SongModel[] = [];
   loadingFavorite = '';
+
+  form = new FormBuilder().group({
+    title: [''],
+  });
+
+  get f() {
+    return this.form.controls;
+  }
 
   constructor(
     private dialog: AppDialogService,
@@ -79,6 +88,25 @@ export class SongsComponent implements OnInit {
           });
         }
       });
+  }
+
+  search() {
+
+    this.dialog.loadingShow();
+    const title  = this.form.value.title ?? '';
+    this._songsService.get(title).subscribe({
+      next: (data) => {
+        if (data.success) {
+          this.songs = data.model.results;
+          this.pagination = data.model;
+        }
+        this.dialog.loadingHide();
+      },
+      error: (err) => {
+        console.log('err :>> ', err);
+        this.dialog.loadingHide();
+      },
+    });
   }
 
   private loadData() {

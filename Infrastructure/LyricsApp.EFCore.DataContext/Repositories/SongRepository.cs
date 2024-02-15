@@ -49,6 +49,7 @@ namespace LyricsApp.Infrastructure.EFCore.DataContext.Repositories
                 .Where(x =>
                     (x.Genre == null || x.Genre.OwnerId == userId) &&
                     x.OwnerId == userId && (
+                    string.IsNullOrWhiteSpace(query) || 
                     x.Title.ToLower().Contains(query.ToLower()) ||
                     x.Lyric.ToLower().Contains(query.ToLower()))
                 );

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { SongModel } from '../models/Song';
 import { ApiSuccess } from '../models/ResponseModel';
@@ -16,8 +16,21 @@ export class SongsService {
     this._apiUrl = this.baseUrl + 'api/songs';
   }
 
-  get() {
-    return this.http.get<ApiSuccess<PagedResult<SongModel>>>(this._apiUrl);
+  get(title?: string) {
+    let params = new HttpParams();
+    if (title) {
+      params = new HttpParams().set('query', title ?? '');
+    }
+    return this.http.get<ApiSuccess<PagedResult<SongModel>>>(this._apiUrl, {
+      params,
+    });
+  }
+
+  search(title: string) {
+    const params = new HttpParams().set('Title', title);
+    return this.http.get<ApiSuccess<SongModel[]>>(`${this._apiUrl}/search`, {
+      params: params,
+    });
   }
 
   getById(id: string) {
@@ -29,10 +42,13 @@ export class SongsService {
   }
 
   setFavorite(id: string, isFavorite: boolean) {
-    return this.http.post<ApiSuccess<SongModel>>(this._apiUrl + `/${id}/favorite`, {
-      id,
-      isFavorite,
-    });
+    return this.http.post<ApiSuccess<SongModel>>(
+      this._apiUrl + `/${id}/favorite`,
+      {
+        id,
+        isFavorite,
+      }
+    );
   }
 
   update(id: string, data: SongModel) {

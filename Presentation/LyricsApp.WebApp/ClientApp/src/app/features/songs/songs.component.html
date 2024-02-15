@@ -1,5 +1,14 @@
 <h1 class="text-3xl font-bold">Song lyrics</h1>
 
+<div class="flex justify-center">
+  <form [formGroup]="form" (submit)="search()">
+    <div class="join">
+      <input class="input input-bordered join-item" placeholder="Search" formControlName="title"/>
+      <button type="submit" class="btn btn-info text-primary join-item">Search</button>
+    </div>
+  </form>
+</div>
+
 <div class="flex justify-end mb-3">
   <button type="button" class="btn btn-success" [routerLink]="['/songs/form']">
     <i class="bi bi-plus-lg"></i>
